@@ -1,7 +1,11 @@
 <script lang='ts'>
-    import { fetchAllComments, fetchAllStories } from "../../server";
-    let comments: {}[] | [] = [];
-    let stories: {}[] | [] = [];
+    import { fetchAllCategories, fetchAllComments, fetchAllStories, fetchAllUsers } from "../../server";
+    import type { Comments, Stories, Category, Users } from "./interfaces";
+    
+    let comments: Comments[] | [] = [];
+    let stories: Stories[] | [] = [];
+    let category : Category[] | [] = [];
+    let users: Users[] | [] = [];
 
     fetchAllComments()
     .then((data)=>{
@@ -11,6 +15,16 @@
     fetchAllStories()
     .then((data)=>{
         stories = data!
+    })
+
+    fetchAllCategories()
+    .then((data)=>{
+        category = data!
+    })
+
+    fetchAllUsers()
+    .then((data)=>{
+        users = data!
     })
 
 </script>
@@ -25,12 +39,29 @@
         {/each}
         {/if}
     </ul>
-    <h1>This is the main component</h1>
     <ul>
         {#if stories.length}
         {#each stories as stories}
         <li>
             {stories.body}
+        </li>
+        {/each}
+        {/if}
+    </ul>
+    <ul>
+        {#if users.length}
+        {#each users as user}
+        <li>
+            {user.username}
+        </li>
+        {/each}
+        {/if}
+    </ul>
+    <ul>
+        {#if category.length}
+        {#each category as category}
+        <li>
+            {category.slug}
         </li>
         {/each}
         {/if}

@@ -16,3 +16,19 @@ export async function fetchAllStories () {
       .select();
     return data
 }
+
+export async function fetchAllCategories () {
+
+  const { data, error } = await supabase
+    .from('category')
+    .select();
+  return data
+}
+
+export async function fetchAllUsers () {
+
+  const { data, error } = await supabase
+    .from('users')
+    .select();
+  return data
+}
