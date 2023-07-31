@@ -1,9 +1,9 @@
 <script lang='ts'>
-    import { fetchAllCategories, fetchAllComments, fetchAllStories, fetchAllUsers } from "../../server";
-    import type { Comments, Stories, Category, Users } from "./interfaces";
+    import { fetchAllCategories, fetchAllComments, fetchAllUsers } from "../../server";
+    import type { Comments, Category, Users } from "./interfaces";
     
     let comments: Comments[] | [] = [];
-    let stories: Stories[] | [] = [];
+
     let category : Category[] | [] = [];
     let users: Users[] | [] = [];
 
@@ -12,10 +12,7 @@
         comments = data!
     })
 
-    fetchAllStories()
-    .then((data)=>{
-        stories = data!
-    })
+    
 
     fetchAllCategories()
     .then((data)=>{
@@ -35,15 +32,6 @@
         {#each comments as comments}
         <li>
             {comments.body}
-        </li>
-        {/each}
-        {/if}
-    </ul>
-    <ul>
-        {#if stories.length}
-        {#each stories as stories}
-        <li>
-            {stories.body}
         </li>
         {/each}
         {/if}
