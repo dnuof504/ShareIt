@@ -9,7 +9,7 @@
 </script>
 
 
-<NavBar />
+
 <Main/>
 <div class="text-3xl">
 <Comments />

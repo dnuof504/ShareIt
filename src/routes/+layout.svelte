@@ -1,8 +1,10 @@
 <script>  
+import NavBar from "../components/NavBar.svelte"
+import "../main.css"
 </script>
 
   <div class="app">
-
+      <NavBar />
       <main>
           <slot />
       </main>
