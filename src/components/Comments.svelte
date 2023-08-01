@@ -11,7 +11,7 @@
     
 </script>
 
-<ul>
+<ul class="border">
     {#if comments.length}
     {#each comments as comments}
     <li>
