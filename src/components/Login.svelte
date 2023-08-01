@@ -3,23 +3,17 @@
     import { writable } from "svelte/store";
     import { setContext } from "svelte";
     import { getContext } from "svelte";
-
-    let matchedUserOutside;
-    const user = writable(matchedUserOutside)
+    import {ourUser} from "../../src/store"
 
     const login = {
         username: '',
         password: ''
     }
-
-    setContext('ourUser', user)
-    $: user.set(matchedUserOutside!)
-
     const handleSubmit = () => {
         checkUser(login.username, login.password)
         .then((matchedUser)=>{
-            matchedUserOutside=matchedUser[0].username
-           
+
+            ourUser.set(matchedUser[0].username)
         })
 
     }
@@ -36,4 +30,4 @@
     <button type="submit">Submit</button>
 </form>
 
-<a href="/stories/3">Link to stories</a>
+<a href="./">Link to main</a>
