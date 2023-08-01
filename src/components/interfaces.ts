@@ -9,6 +9,7 @@ interface Comments {
 }[];
 
 interface Stories {
+    title: string,
     story_id: number,
     username: string,
     created_at: string,

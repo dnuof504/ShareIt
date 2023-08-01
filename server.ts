@@ -59,3 +59,19 @@ const permissions = obj.permissions
     .select()
   return data
 }
+
+export async function fetchSingleStory (id: number) {
+  const { data, error } = await supabase
+    .from('stories')
+    .select()
+    .eq('story_id', id)
+  return data
+}
+
+export async function fetchStoryComments(id: number) {
+  const { data, error } = await supabase
+    .from('comments')
+    .select()
+    .eq('story_id', id)
+  return data
+}
