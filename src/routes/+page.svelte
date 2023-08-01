@@ -4,14 +4,15 @@
 	import Main from "../components/Main.svelte";
 	import Users from "../components/Users.svelte";
 	import "../../dist/output.css"
-	// import "../main.css"
+	import NavBar from "../components/NavBar.svelte";
+	import "../main.css"
 </script>
 
 
+<NavBar />
 <Main/>
 <div class="text-3xl">
 <Comments />
 </div>
 <Users />
 <Categories />
-
