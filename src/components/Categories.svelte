@@ -16,7 +16,7 @@ fetchAllCategories()
         {#if category.length}
         {#each category as category}
         <li>
-            {category.slug}
+            <a href={`/categories/${category.slug}`}>{category.slug}</a>
         </li>
         {/each}
         {/if}
