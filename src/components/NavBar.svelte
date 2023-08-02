@@ -1,33 +1,44 @@
 <script>
-	import { Navbar, NavBrand, NavUl, NavLi, NavHamburger } from 'flowbite-svelte';
+	import { Navbar, NavBrand, NavUl, NavLi, NavHamburger, Dropdown, DropdownItem, Chevron, DropdownDivider } from 'flowbite-svelte';
 </script>
 
-<Navbar  let:hidden let:toggle rounded>
-	<NavBrand href="/" class="flex">
-		<img src="" class="flex-none w-14 h-14 ..." alt="ShareIt Logo" />
-		<span class="text-3xl font-semibold dark:text-white flex-1 ">ShareIt</span>
-		<div class="flex-auto">
-			<NavUl>
-				<NavLi href="/">Home</NavLi>
-				<NavLi href="/stories">Stories</NavLi>
-				<NavLi  href="/about">About Us</NavLi>
-				<NavLi href="/contact">Contact Us</NavLi>
-			</NavUl>
-		
-	
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<!-- svelte-ignore a11y-no-static-element-interactions -->
-			<span on:click={toggle} >
-        Categories
-				<NavUl {hidden}>
-					<NavLi href="/categories/workplace" active={true}>Work Place</NavLi>
-					<NavLi href="/categories/romance">Romance</NavLi>
-					<NavLi href="/categories/services">Family</NavLi>
-					<NavLi href="/categories/pricing">Friends</NavLi>
-					<NavLi href="/categories/contact">Pets</NavLi>
-					<NavLi href="/categories/contact">General</NavLi>
-				</NavUl>
-			</span>
-		</div>
-	</NavBrand>
+<Navbar let:hidden let:toggle color="blue">
+  <NavBrand href="/">
+    <img
+      src="/share-it-logo.png"
+      class="mr-3 h-6 sm:h-9"
+      alt="ShareIt logo"	
+    />
+    <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+      ShareIt
+    </span>
+  </NavBrand>
+  <NavHamburger on:click={toggle} />
+  <NavUl {hidden}>
+    <NavLi href="/">Home</NavLi>
+		<NavLi href="/stories">Stories</NavLi>
+    <NavLi href="/about">About Us</NavLi>
+    <NavLi href="/contact">Contact Us</NavLi>
+		<NavLi id="nav-menu1" class="cursor-pointer"><Chevron aligned>Categories</Chevron></NavLi>
+		<Dropdown triggeredBy="#nav-menu1" class="w-44 z-20">
+      <DropdownItem href="/category/family">Family</DropdownItem>
+			<DropdownItem href="/category/friends">Friends</DropdownItem>
+			<DropdownItem href="/category/pets">Pets</DropdownItem>
+			<DropdownItem href="/category/romance">Romancs</DropdownItem>
+			<DropdownItem href="/category/workplace">Work Place</DropdownItem>
+      <DropdownDivider />
+      <DropdownItem>Sign out</DropdownItem>
+    </Dropdown>
+		<NavLi href="/login">Login</NavLi>
+  </NavUl>
 </Navbar>
+
+
+
+
+
+
+
+
+
+
