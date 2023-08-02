@@ -1,3 +1,3 @@
 import { persisted } from 'svelte-local-storage-store'
 
-export const loggedAs = persisted('loggedAs', null)
+export const loggedAs = persisted('loggedAs', "Anonymous")
