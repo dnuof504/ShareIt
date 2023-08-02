@@ -59,3 +59,11 @@ const permissions = obj.permissions
     .select()
   return data
 }
+
+export async function getStoriesByCategory(slug: string) {
+  const { data, error } = await supabase
+  .from('stories')
+  .select()
+  .eq('category_name', slug)
+    return data
+}
