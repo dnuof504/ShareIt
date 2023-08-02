@@ -30,5 +30,3 @@
     {/each}
     {/if}
 </ul>
-
-</section>
