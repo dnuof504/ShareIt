@@ -82,6 +82,13 @@ export async function fetchStoryComments(id: number) {
   return data
 }
 
+export async function deleteSingleComment(id: number){
+  const { error } = await supabase
+  .from('comments')
+  .delete()
+  .eq('comment_id', id)
+}
+
 export async function postComment(obj: Comment) {
   const username = obj.username
   const story_id = obj.story_id
