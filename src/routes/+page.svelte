@@ -3,16 +3,11 @@
 	import Comments from "../components/Comments.svelte";
 	import Main from "../components/Main.svelte";
 	import Users from "../components/Users.svelte";
-	import "../../dist/output.css"
-	import NavBar from "../components/NavBar.svelte";
-	import "../main.css"
 </script>
 
-
-<NavBar />
 <Main/>
-<div class="text-3xl">
+
 <Comments />
-</div>
+
 <Users />
 <Categories />
