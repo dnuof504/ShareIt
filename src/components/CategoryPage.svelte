@@ -5,21 +5,20 @@
 
     let categoryName:string = getContext('category_name')
     let stories:any= [];
-    let a
-    getStoriesByCategory(categoryName)
-    .then((fetchedStories)=>{
-        stories=fetchedStories!
-    })
-    category_slug.subscribe((value)=>{
-      a = value
-    })
+  
+    category_slug.subscribe((newCategory)=>{
+      getStoriesByCategory(newCategory)
+        .then((fetchedStories)=>{
+            stories=fetchedStories!
+        })
+})
+
 
   </script>
 
-{#key a}
+
 <ul>
   {#each stories as story}
     <li>{story.body}</li>
   {/each}
 </ul>
-{/key}

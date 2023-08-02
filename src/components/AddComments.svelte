@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { postComment } from "../../server";
-	import { loggedAs } from "../store";
+	import { comments, loggedAs } from "../store";
     import { getContext } from 'svelte';
 
     let slug: number = getContext('slug')
@@ -13,11 +13,11 @@
 
     const handleSubmit = () => {
         postComment(newComment)
-        // .then((postedComment)=>{
-        //     console.log(postedComment)
-        // })
+        .then((postedComment)=>{
+            console.log(postedComment)
+        })
     }
-    
+
 </script>
 
 <form action="" on:submit|preventDefault={handleSubmit}>
