@@ -88,3 +88,21 @@ export async function deleteSingleComment(id: number){
   .delete()
   .eq('comment_id', id)
 }
+
+export async function postComment(obj: Comment) {
+  const username = obj.username
+  const story_id = obj.story_id
+  const body = obj.body
+ 
+
+  const { data, error} = await supabase
+  .from('comments')
+  .insert([{
+    username,
+    story_id,
+    body,
+  }])
+  .select()
+  .order('created_at', { ascending: false })
+  return data
+}

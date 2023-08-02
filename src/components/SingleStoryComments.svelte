@@ -3,8 +3,7 @@
     import { getContext } from 'svelte';
     import type { Comments } from "./interfaces";
     import { loggedAs } from "../store";
-    
-
+    import AddComments from "./AddComments.svelte";
     let user: any = getContext('ourUser')
     console.log(user)
     let slug: number = getContext('slug')
@@ -17,7 +16,7 @@
         deleteSingleComment(comment_id)
     }
 </script>
-<section>
+<AddComments />
 <ul class="border">
     {#if comments.length}
     {#each comments as comments}
