@@ -1,3 +1,5 @@
 import { persisted } from 'svelte-local-storage-store'
+import { writable } from 'svelte/store'
 
 export const loggedAs = persisted('loggedAs', null)
+export const category_slug = writable(null)

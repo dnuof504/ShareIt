@@ -81,3 +81,21 @@ export async function fetchStoryComments(id: number) {
     .eq('story_id', id)
   return data
 }
+
+export async function postComment(obj: Comment) {
+  const username = obj.username
+  const story_id = obj.story_id
+  const body = obj.body
+ 
+
+  const { data, error} = await supabase
+  .from('comments')
+  .insert([{
+    username,
+    story_id,
+    body,
+  }])
+  .select()
+  .order('created_at', { ascending: false })
+  return data
+}

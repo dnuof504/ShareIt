@@ -2,6 +2,7 @@
     import { fetchStoryComments } from "../../server";
     import { getContext } from 'svelte';
     import type { Comments } from "./interfaces";
+	import AddComments from "./AddComments.svelte";
     let user: any = getContext('ourUser')
     console.log(user)
     let slug: number = getContext('slug')
@@ -12,7 +13,7 @@
     })
 
 </script>
-
+<AddComments />
 <ul class="border">
     {#if comments.length}
     {#each comments as comments}

@@ -21,11 +21,12 @@
     <NavLi href="/contact">Contact Us</NavLi>
 		<NavLi id="nav-menu1" class="cursor-pointer"><Chevron aligned>Categories</Chevron></NavLi>
 		<Dropdown triggeredBy="#nav-menu1" class="w-44 z-20">
-      <DropdownItem href="/category/family">Family</DropdownItem>
-			<DropdownItem href="/category/friends">Friends</DropdownItem>
-			<DropdownItem href="/category/pets">Pets</DropdownItem>
-			<DropdownItem href="/category/romance">Romancs</DropdownItem>
-			<DropdownItem href="/category/workplace">Work Place</DropdownItem>
+      <DropdownItem href="/categories/family">Family</DropdownItem>
+			<DropdownItem href="/categories/friends">Friends</DropdownItem>
+			<DropdownItem href="/categories/pets">Pets</DropdownItem>
+			<DropdownItem href="/categories/romance">Romance</DropdownItem>
+			<DropdownItem href="/categories/workplace">Work Place</DropdownItem>
+      <DropdownItem href="/categories/general">General</DropdownItem>
       <DropdownDivider />
       <DropdownItem>Sign out</DropdownItem>
     </Dropdown>
