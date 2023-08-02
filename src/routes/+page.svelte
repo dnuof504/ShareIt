@@ -11,9 +11,8 @@
 <h1>Logged in as {$loggedAs}</h1>
 {/if}
 <Main/>
-<div class="text-3xl">
+
 <Comments />
-</div>
+
 <Users />
 <Categories />
-

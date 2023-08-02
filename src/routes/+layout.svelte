@@ -1,9 +1,9 @@
-<script>  
+<script>
+	import NavBar from '../components/NavBar.svelte';
+	import '../main.css';
 </script>
 
-  <div class="app">
-
-      <main>
-          <slot />
-      </main>
-  </div>
+<main>
+	<NavBar />
+	<slot />
+</main>

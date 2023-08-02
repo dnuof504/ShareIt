@@ -60,6 +60,12 @@ const permissions = obj.permissions
   return data
 }
 
+export async function getStoriesByCategory(slug: string) {
+  const { data, error } = await supabase
+  .from('stories')
+  .select()
+  .eq('category_name', slug)
+    return data}
 export async function fetchSingleStory (id: number) {
   const { data, error } = await supabase
     .from('stories')
