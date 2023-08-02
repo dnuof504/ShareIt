@@ -1,11 +1,11 @@
 <script lang='ts'>
-    import { getStoriesByCategory } from '../../server.ts'; 
+    import { getStoriesByCategory } from '../../server'; 
     import { getContext} from 'svelte';
 
-    let categoryName = getContext('category_name')
-    let stories = [];
+    let categoryName:string = getContext('category_name')
+    let stories:any= [];
 
-    getStoriesByCategory('romance')
+    getStoriesByCategory(categoryName)
     .then((fetchedStories)=>{
         stories=fetchedStories!
     })
