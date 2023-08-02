@@ -1,11 +1,11 @@
 <script lang='ts'>
     import type { Stories } from './interfaces';
     import { getContext } from 'svelte';
-    import {ourUser} from "../store"
+    import { loggedAs } from "../store"
     let slug: number = getContext('slug')
     let story: Stories [] | [] = [];
 
-    console.log(ourUser)
+    console.log($loggedAs)
     import { fetchSingleStory } from '../../server';
     fetchSingleStory(slug)
     .then((fetchedStory)=>{

@@ -1,19 +1,20 @@
 <script lang='ts'>
+
     import { checkUser } from "../utils/utils";
-    import { writable } from "svelte/store";
-    import { setContext } from "svelte";
-    import { getContext } from "svelte";
-    import {ourUser} from "../../src/store"
+
+    import { loggedAs } from '../../src/store'
 
     const login = {
         username: '',
         password: ''
     }
+
+
     const handleSubmit = () => {
         checkUser(login.username, login.password)
         .then((matchedUser)=>{
 
-            ourUser.set(matchedUser[0].username)
+            loggedAs.set(matchedUser[0].username)
         })
 
     }
