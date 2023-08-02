@@ -4,7 +4,6 @@
 	import Comments from "../components/Comments.svelte";
 	import Main from "../components/Main.svelte";
 	import Users from "../components/Users.svelte";
-	import "../../dist/output.css"
 	import {loggedAs} from "../store"
 </script>
 {#if $loggedAs}
