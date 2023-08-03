@@ -14,7 +14,7 @@
 
 	async function incrementVotes(votes: number, story_id: number) {
 		newVotes = votes + 1;
-		await updateVotes(story_id, newVotes)
+		await updateVotes(story_id, newVotes)   
 	}
 </script>
 

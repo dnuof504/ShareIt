@@ -149,7 +149,52 @@ export async function updateVotes(id: number, newVote: number){
   .update({"votes": newVote})
   .eq("story_id", id)
   .select("votes")
-  
   return data
 }
+export async function fetchUser (username: string) {
+
+  const {data, error} = await supabase
+    .from('users')
+    .select()
+    .eq("username", username)
+
+
+  return data
+}
+
+export async function patchUser(user:Users) {
+
+  const {data, error} = await supabase
+    .from('users')
+    .update({
+      username: user.username,
+      name: user.name,
+      email: user.email,
+      avatar_url: user.avatar_url,
+      biography: user.biography,
+      permissions: user.permissions,
+      password: user.password
+    })
+    .eq('username', user.username)
+    .select()
+    return data
+}
+
+
+export async function deleteUser(username:string){
+  const {error} = await supabase
+  .from("users")
+  .delete()
+  .eq("username", username)
+
+}
+
+export async function changeAvatar(username:string,newAvatar:string){
+  const  {data, error} = await supabase
+  .from("users")
+  .update({avatar_url:newAvatar})
+  .eq("username", username)
+  return data
+}
+
 

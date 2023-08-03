@@ -30,5 +30,3 @@
     <input id="password" placeholder="Password" type="password" bind:value={login.password}/>
     <button type="submit">Submit</button>
 </form>
-
-<a href="./">Link to main</a>
