@@ -16,7 +16,6 @@
 	import type { Users } from "./interfaces";
 	import { Permissions } from "./enums";
 	import { checkUpdatedUser } from "../utils/utils";
-    import { userInfoStore } from "../../src/store";
     let userInfo: Users;
     let userInfoCopy: Users = {
         username: '',
@@ -27,19 +26,12 @@
         password: "",
         permissions: Permissions.USER,
     }
-    let isUpdated=0;
-
-    let name:string, email:string, password:string, biography:string, avatar_url:string
     
     onMount(()=>{
 
         fetchUser($loggedAs)
         .then((data)=>{
             userInfo = data![0];
-            // name = userInfo.name;
-            // email = userInfo.email;
-            // biography = userInfo.biography
-            // avatar_url = userInfo.avatar_url
             userInfoCopy.username = userInfo.username;
             userInfoCopy.permissions = userInfo.permissions;
         })
@@ -60,12 +52,11 @@
             permissions: Permissions.USER,
         }
         })
-        isUpdated++
     }
 </script>
 
 
-{#key isUpdated}
+
 {#if userInfo}
 <Card padding='sm'>
     <div class="flex justify-end">
@@ -114,6 +105,4 @@
     <GradientButton type="submit" color="green" >Submit!</GradientButton>
   </form>
   
-  {isUpdated}
   {/if}
-  {/key}
