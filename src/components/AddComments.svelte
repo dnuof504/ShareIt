@@ -19,7 +19,8 @@
 
 	const handleSubmit = () => {
 		postComment(newComment).then(() => {
-			comments.update((comments) => [newComment, ...comments]);
+			comments.update((comments) => [ ...comments]);
+            newComment.body = ""
 		});
 	};
 </script>
