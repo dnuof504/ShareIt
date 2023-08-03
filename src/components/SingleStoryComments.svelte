@@ -1,18 +1,30 @@
 <script lang="ts">
-	import { fetchStoryComments, deleteSingleComment } from '../../server';
+	import { fetchStoryComments, deleteSingleComment, fetchAllUsers } from '../../server';
 	import { getContext, onDestroy, onMount } from 'svelte';
 	import { loggedAs } from '../store';
 	import AddComments from './AddComments.svelte';
-	let storyId: number = getContext('slug');
 	import { comments } from '../store';
-	import { formatDate } from '../utils/utils';
-
+	import { arrangeComments, formatDate } from '../utils/utils';
+	import { Activity, ActivityItem } from 'flowbite-svelte';
+	
+	let storyId: number = getContext('slug');
 	let renderComments: any = [];
+	let users: any = [];
+	let activities: any = [];
 
 	onMount(() => {
 		fetchStoryComments(storyId).then((responseComments) => {
 			renderComments = responseComments;
-		});
+		})
+		.then(()=>{
+			fetchAllUsers()
+			.then((data)=>{
+				users=data;
+			})
+			.then(()=>{
+				activities = arrangeComments(users, renderComments)
+			})
+		})
 	});
 
 	const unsubscribe = comments.subscribe(() =>
@@ -33,10 +45,17 @@
 </script>
 
 <AddComments />
+
 <ul class="border">
 	{#if renderComments.length}
-		{#each renderComments as comment}
-			<li>
+	<Activity>
+		<ActivityItem {activities} />
+	</Activity>
+		<!-- {#each renderComments as comment} -->
+		
+			
+
+			<!-- <li>
 				<b>{comment.username} said:</b>
 				{comment.body} <b>it happened on:</b>
 				{formatDate(comment.created_at)}
@@ -50,7 +69,7 @@
 						>Delete Comment</button
 					>
 				{/if}
-			</li>
-		{/each}
+			</li> -->
+		<!-- {/each} -->
 	{/if}
 </ul>
