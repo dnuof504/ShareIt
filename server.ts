@@ -1,4 +1,4 @@
-import type { Comment, Users } from './src/components/interfaces';
+import type { Comment, Users, Story } from './src/components/interfaces';
 import {supabase} from './src/lib/supabaseClient';
 
 
@@ -14,7 +14,8 @@ export async function fetchAllStories () {
 
     const { data, error } = await supabase
       .from('stories')
-      .select();
+      .select()
+      .order("created_at", {ascending: false})
     return data
 }
 
@@ -106,3 +107,49 @@ export async function postComment(obj: Comment) {
  
   return data
 }
+
+
+export async function postStory(obj: Story) {
+  const category_name = obj.category_name
+  const title = obj.title
+  const username = obj.username
+  const body = obj.body
+  const img_url = obj.img_url
+  const votes = obj.votes 
+
+  console.log("we are in the server")
+
+
+  const { data, error} = await supabase
+  .from('stories')
+  .insert([{
+    category_name,
+    title,
+    username,
+    body,
+    img_url,
+    votes
+  }])
+ .select()
+ console.log(data, "this is the data")  
+ console.log(error)
+  return data
+}
+
+export async function deleteSingleStory(id: number){
+  const { error } = await supabase
+  .from('stories')
+  .delete()
+  .eq('story_id', id)
+}
+
+export async function updateVotes(id: number, newVote: number){
+  const {data, error} = await supabase
+  .from('stories')
+  .update({"votes": newVote})
+  .eq("story_id", id)
+  .select("votes")
+  
+  return data
+}
+

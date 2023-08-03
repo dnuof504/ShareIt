@@ -13,6 +13,15 @@ interface Comments {
     created_at: string,
 }[];
 
+interface Story {
+    category_name:string
+    title:string,
+    username: string,
+    body: string,
+    img_url:string,
+    votes: number
+}
+
 interface Stories {
     title: string,
     story_id: number,
@@ -40,4 +49,4 @@ interface Users {
     permissions: Permissions,
 }[];
 
-export type { Comments, Stories, Category, Users, Comment}
+export type { Comments, Stories, Category, Users, Comment, Story}
