@@ -1,5 +1,10 @@
 import type { Permissions } from "./enums";
 
+interface Comment {
+    username: string,
+    story_id: number,
+    body: string,
+}
 interface Comments {
     comment_id: number,
     username: string,
@@ -35,4 +40,4 @@ interface Users {
     permissions: Permissions,
 }[];
 
-export type { Comments, Stories, Category, Users}
+export type { Comments, Stories, Category, Users, Comment}

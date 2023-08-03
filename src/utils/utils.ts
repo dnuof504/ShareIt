@@ -1,8 +1,6 @@
 import { fetchAllUsers } from "../../server"
-import type { Users } from "../components/interfaces"
 
 export async function checkUser (username: string, password: string) {
-    let users: Users[] = [];
     return fetchAllUsers()
     .then((allUsers)=>{
         return allUsers!.filter((user) => {
@@ -15,3 +13,5 @@ export async function checkUser (username: string, password: string) {
         return user
     })
 }
+
+export const formatDate = (date: Date) => new Date(date).toLocaleString()

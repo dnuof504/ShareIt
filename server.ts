@@ -1,4 +1,4 @@
-import type { Users } from './src/components/interfaces';
+import type { Comment, Users } from './src/components/interfaces';
 import {supabase} from './src/lib/supabaseClient';
 
 
@@ -79,6 +79,7 @@ export async function fetchStoryComments(id: number) {
     .from('comments')
     .select()
     .eq('story_id', id)
+    .order('created_at', { ascending: false })
   return data
 }
 
@@ -102,7 +103,6 @@ export async function postComment(obj: Comment) {
     story_id,
     body,
   }])
-  .select()
-  .order('created_at', { ascending: false })
+ 
   return data
 }
