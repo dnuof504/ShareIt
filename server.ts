@@ -106,3 +106,32 @@ export async function postComment(obj: Comment) {
  
   return data
 }
+
+export async function fetchUser (username: string) {
+
+  const {data, error} = await supabase
+    .from('users')
+    .select()
+    .eq("username", username)
+
+
+  return data
+}
+
+export async function patchUser(user:Users) {
+  console.log(user)
+  const {data, error} = await supabase
+    .from('users')
+    .update({
+      username: user.username,
+      name: user.name,
+      email: user.email,
+      avatar_url: user.avatar_url,
+      biography: user.biography,
+      permissions: user.permissions,
+      password: user.password
+    })
+    .eq('username', user.username)
+    .select()
+    return data
+}
