@@ -30,6 +30,7 @@
 	const unsubscribe = comments.subscribe(() =>
 		fetchStoryComments(storyId).then((responseComments) => {
 			renderComments = responseComments;
+			activities = arrangeComments(users, renderComments)
 		})
 	);
 
@@ -40,6 +41,7 @@
 
 		await fetchStoryComments(storyId).then((responseComments) => {
 			renderComments = responseComments;
+			activities = arrangeComments(users, renderComments)
 		});
 	}
 </script>
@@ -48,9 +50,11 @@
 
 <ul class="border">
 	{#if renderComments.length}
+	{#key activities}
 	<Activity>
 		<ActivityItem {activities} />
 	</Activity>
+	{/key}
 		<!-- {#each renderComments as comment} -->
 		
 			
