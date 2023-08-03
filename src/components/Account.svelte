@@ -16,6 +16,8 @@
 	import type { Users } from "./interfaces";
 	import { Permissions } from "./enums";
 	import { checkUpdatedUser } from "../utils/utils";
+	import DeleteUser from "./DeleteUser.svelte";
+	import { goto } from "$app/navigation";
     let userInfo: Users;
     let userInfoCopy: Users = {
         username: '',
@@ -68,14 +70,14 @@
       </Dropdown>
     </div>
     <div class="flex flex-col items-center pb-4">
-      <Avatar size="lg" src="" />
+      <Avatar size="lg" src={userInfo.avatar_url} />
         <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{userInfo.username}</h5>
         <span class="text-sm text-gray-500 dark:text-gray-400">{userInfo.biography}</span>
         <div class="flex mt-4 space-x-3 lg:mt-6">
             {#if userInfo.avatar_url==='https://villagesonmacarthur.com/wp-content/uploads/2020/12/Blank-Avatar.png'}
-            <GradientButton type="button" color="green">Set Avatar</GradientButton>
+            <GradientButton on:click={()=>{goto("/account/avatar")}} type="button" color="green">Set Avatar</GradientButton>
             {:else}
-            <GradientButton type="button" color="green" >Update Avatar</GradientButton>
+            <GradientButton on:click={()=>{goto("/account/avatar")}} type="button" color="green" >Update Avatar</GradientButton>
             {/if}
 
         </div>
@@ -106,3 +108,5 @@
   </form>
   
   {/if}
+
+  <DeleteUser />

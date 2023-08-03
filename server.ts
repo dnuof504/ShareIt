@@ -119,7 +119,7 @@ export async function fetchUser (username: string) {
 }
 
 export async function patchUser(user:Users) {
-  console.log(user)
+
   const {data, error} = await supabase
     .from('users')
     .update({
@@ -134,4 +134,21 @@ export async function patchUser(user:Users) {
     .eq('username', user.username)
     .select()
     return data
+}
+
+
+export async function deleteUser(username:string){
+  const {error} = await supabase
+  .from("users")
+  .delete()
+  .eq("username", username)
+
+}
+
+export async function changeAvatar(username:string,newAvatar:string){
+  const  {data, error} = await supabase
+  .from("users")
+  .update({avatar_url:newAvatar})
+  .eq("username", username)
+  return data
 }
