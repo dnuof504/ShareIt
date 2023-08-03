@@ -5,7 +5,7 @@
     let newUser:Users = {
         username: "",
         name: "",
-        avatar_url: "",
+        avatar_url: "https://villagesonmacarthur.com/wp-content/uploads/2020/12/Blank-Avatar.png",
         email: "",
         biography: "",
         password: "",
@@ -17,7 +17,7 @@ function handleSubmit (){
     newUser={
         username: "",
         name: "",
-        avatar_url: "",
+        avatar_url: "https://villagesonmacarthur.com/wp-content/uploads/2020/12/Blank-Avatar.png",
         email: "",
         biography: "",
         password: "",
@@ -30,10 +30,8 @@ function handleSubmit (){
     <h1>Users Header</h1>
     <form on:submit|preventDefault={handleSubmit}>
         <input type="text" placeholder="username" bind:value={newUser.username} required>
-        <input type="text" placeholder="name" bind:value={newUser.name} required>
-        <input type="text" placeholder="avatar_url" bind:value={newUser.avatar_url} required>
-        <input type="text" placeholder="email" bind:value={newUser.email} required>
-        <input type="text" placeholder="biography" bind:value={newUser.biography} required>
+        <input type="text" placeholder="name" bind:value={newUser.name}>
+        <input type="text" placeholder="email" bind:value={newUser.email}>
         <input type="text" placeholder="password" bind:value={newUser.password} required>
         <button> Submit!</button>
     </form>

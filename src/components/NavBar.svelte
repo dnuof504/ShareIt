@@ -63,8 +63,11 @@
 				><Chevron aligned>Logged as {$loggedAs}</Chevron></NavLi
 			>
 			<Dropdown triggeredBy="#nav-menu2" class="w-44 z-20">
+				<DropdownItem href="/account"
+				>Account</DropdownItem >
 				<DropdownItem on:click={handleLogout}>Log Out</DropdownItem>
-			</Dropdown>
+
+				</Dropdown>
 		{/if}
 	</NavUl>
 </Navbar>
