@@ -38,7 +38,7 @@
 		{#each renderComments as comment}
 			<li>
 				<b>{comment.username} said:</b>
-				{comment.body} <b>IT HAPPENED</b>
+				{comment.body} <b>it happened on:</b>
 				{formatDate(comment.created_at)}
 				{#if comment.username === $loggedAs}
 					<button
