@@ -5,7 +5,6 @@
     let slug: number = getContext('slug')
     let story: Stories [] | [] = [];
 
-    console.log($loggedAs)
     import { fetchSingleStory } from '../../server';
     fetchSingleStory(slug)
     .then((fetchedStory)=>{
