@@ -118,9 +118,6 @@ export async function postStory(obj: Story) {
   const img_url = obj.img_url
   const votes = obj.votes 
 
-  console.log("we are in the server")
-
-
   const { data, error} = await supabase
   .from('stories')
   .insert([{
@@ -132,8 +129,6 @@ export async function postStory(obj: Story) {
     votes
   }])
  .select()
- console.log(data, "this is the data")  
- console.log(error)
   return data
 }
 
@@ -158,8 +153,6 @@ export async function fetchUser (username: string) {
     .from('users')
     .select()
     .eq("username", username)
-
-
   return data
 }
 

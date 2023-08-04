@@ -3,10 +3,10 @@
   import { loggedAs, stories } from "../store";
   import { onDestroy } from 'svelte';
   import { Textarea, Label, Select, Input } from 'flowbite-svelte'
-	import {Categories} from "./enums";
 
 
-  let selected;
+
+  let selected:any;
   let dropDownCategories = [
    
     {value:"workplace", name:"workplace"},
@@ -26,7 +26,7 @@
      body:"",
      img_url:"",
      votes: 0,
-     category_name: selected
+     category_name: selected,
 
 }
 
@@ -51,28 +51,25 @@ async function handleSubmit() {
          return stories
       })
 	};
-
-
-
 </script>
 
 <form action="" on:submit|preventDefault={handleSubmit}>
   <div class='mb-6'>
     <Label for='title' class='block mb-2'>Title</Label>
-    <Input type="text" id="title" size="lg" placeholder='title' bind:value={newStory.title} />
+    <Input type="text" id="title" size="lg" placeholder='title' class='w-96' bind:value={newStory.title} />
 </div>
 <Label for='story' class='block mb-2'>Story</Label>
-  <Textarea id="story" bind:value={newStory.body} />
+  <Textarea id="story" class='w-96' bind:value={newStory.body} />
   <div class='mb-6'>
     <Label for='img_url' class='block mb-2'>Image url</Label>
-    <Input type="text" id="img_url" size="lg" placeholder='image_url' bind:value={newStory.img_url} />
+    <Input type="text" id="img_url" size="lg" placeholder='image_url' class='w-96' bind:value={newStory.img_url} />
 </div>
-  <Label>Select a Category
+  <Label class='w-96'>Select a Category
     <Select class="form-select mt-2" items={dropDownCategories} bind:value={selected}  />
   </Label>
 	<button
 		type="submit"
-		class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+		class="text-white bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 my-5"
 		>Add Story</button
 	>
 </form>
