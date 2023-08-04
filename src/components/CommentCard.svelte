@@ -1,6 +1,8 @@
 <script lang='ts'>
 	import type { Comment } from 'svelte/types/compiler/interfaces';
     import { twMerge } from 'tailwind-merge';
+	import { loggedAs } from '../store';
+	import { formatDate } from '../utils/utils';
     export let renderComments: Comment[];
     export let liClass = 'mb-10 ml-6';
     export let spanClass = 'flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900';
@@ -10,6 +12,7 @@
     export let timeClass = 'mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0';
     export let titleClass = 'text-sm font-normal text-gray-500 lex dark:text-gray-300';
     export let textClass = 'p-3 text-xs italic font-normal text-gray-500 bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-600 dark:border-gray-500 dark:text-gray-300';
+    export let handleDelete:Function;
     let liCls = twMerge(liClass, $$props.classLi);
     let spanCls = twMerge(spanClass, $$props.classSpan);
     let imgCls = twMerge(imgClass, $$props.classImg);
@@ -20,16 +23,19 @@
     let textCls = twMerge(textClass, $$props.classText);
     let src= 'dsfdsfdsfds'
     let alt= ''
+
+
+    
 </script>
     
-    {#each renderComments as { username, created_at, body }}
+    {#each renderComments as { username, created_at, body, comment_id }}
       <li class={liCls}>
         <span class={spanCls}>
           <img class={imgCls} {src} {alt} />
         </span>
         <div class={outerDivCls}>
           <div class={innerDivCls}>
-            <time class={timeCls}>{created_at}</time>
+            <time class={timeCls}>{formatDate(created_at)}</time>
             <div class={titleCls}>
               {@html username}
             </div>
@@ -39,7 +45,11 @@
               {@html body}
             </div>
           {/if}
-          <button>FFFFF</button>
+          {#if username === $loggedAs && username !=="Anonymous"}
+          <button on:click|preventDefault={()=>{
+            handleDelete(comment_id)
+          }}>This is a delete button</button>
+          {/if}
         </div>
       </li>
     {/each}
