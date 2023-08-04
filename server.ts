@@ -1,6 +1,7 @@
 import type { Comment, Users, Story } from './src/components/interfaces';
 import {supabase} from './src/lib/supabaseClient';
-
+import axios from 'axios';
+import { sentiment } from './src/store';
 
 export async function fetchAllComments () {
 
@@ -117,9 +118,6 @@ export async function postStory(obj: Story) {
   const img_url = obj.img_url
   const votes = obj.votes 
 
-  console.log("we are in the server")
-
-
   const { data, error} = await supabase
   .from('stories')
   .insert([{
@@ -131,8 +129,6 @@ export async function postStory(obj: Story) {
     votes
   }])
  .select()
- console.log(data, "this is the data")  
- console.log(error)
   return data
 }
 
@@ -157,8 +153,6 @@ export async function fetchUser (username: string) {
     .from('users')
     .select()
     .eq("username", username)
-
-
   return data
 }
 
@@ -196,5 +190,26 @@ export async function changeAvatar(username:string,newAvatar:string){
   .eq("username", username)
   return data
 }
+export async function sentimentAnalysis(body:string){
 
 
+const options = {
+  method:'POST',
+  url: "https://api.edenai.run/v2/text/sentiment_analysis",
+  headers:
+  {
+  authorization:"Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMWIxM2YzMzUtMzNjNi00YWJjLTllYWYtOGY0NTg0Yzc5MjU3IiwidHlwZSI6ImFwaV90b2tlbiJ9.gpinhCHmGzG5I9qSj9m3l2R_zQFnrp3z60z89Ef9XU8"},
+  data:{
+    providers:"ibm",
+    text:body,
+    language:"en",
+  },
+};
+return axios
+.request(options)
+.then((response)=>{
+  return response.data.ibm.general_sentiment
+})
+
+
+}

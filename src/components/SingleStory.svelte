@@ -1,13 +1,13 @@
 <script lang="ts">
 	import type { Stories } from './interfaces';
 	import { getContext, onDestroy, onMount } from 'svelte';
-	import { loggedAs } from '../store';
+	import { loggedAs, sentiment } from '../store';
 	import { Heading, P } from 'flowbite-svelte';
 	let slug: number = getContext('slug');
 	let story: Stories[] | [] = [];
 	let newVotes: number;
-
-	import { fetchSingleStory, updateVotes } from '../../server';
+	let sentimentMessage:any = null
+	import { fetchSingleStory, sentimentAnalysis, updateVotes } from '../../server';
 	import { formatDate } from '../utils/utils';
 
 	onMount(()=>{fetchSingleStory(slug).then((fetchedStory) => {
@@ -17,7 +17,16 @@
 
 	async function incrementVotes(votes: number, story_id: number) {
 		newVotes = votes + 1;
-		await updateVotes(story_id, newVotes)   
+		await updateVotes(story_id, newVotes)  
+		 
+	}
+
+	async function handleAnalysis (story:any){
+		await sentimentAnalysis(story.body)
+		.then((data)=>{
+			sentimentMessage=data
+		})
+
 	}
 </script>
 
@@ -54,6 +63,15 @@
 				<li>
 					<img src={story.img_url} class="img" alt="this is something that we can see" />
 				</li>
+
+				<button on:click={()=>{
+					handleAnalysis(story)
+					}}
+		class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+		>Use the Power of AI</button>
+		{#if sentimentMessage !== null}
+  		<p>{sentimentMessage}</p>
+			{/if}
 				<li>
 					<P class="mb-3" weight="light" color="text-black-500 dark:text-gray-400">{story.body}</P>
 					<P class="mb-3" weight="light" color="text-black-500 dark:text-gray-400">Posted at: {story.created_at}</P>
@@ -66,5 +84,6 @@
 				<br />
 			{/each}
 		{/if}
+		<br />
 		<br />
 </ul>

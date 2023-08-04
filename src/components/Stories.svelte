@@ -17,26 +17,15 @@ const unsubscribe = stories.subscribe(() => {
 
 onDestroy(unsubscribe);
 
-async function handleDeleteClick(story_id : number){
-await deleteSingleStory(story_id)
-
-await fetchAllStories().then((responseStories) => {
-    renderStories = responseStories
-})
-
-}
 </script>
 
-<ul>
+<ul class="flex flex-col items-center justify-center gap-4">
     <AddStories/>
+    <div class="grid grid-cols-2 gap-4 place-content-center h-100 ...">
     {#if renderStories.length}
     {#each renderStories as story}
-    <StoryCard title={story.title} id={story.story_id} body={story.body}/>
-    {#if $loggedAs === story.username} 
-    <button type="button"
-    class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-     on:click={() => handleDeleteClick(story.story_id)}>Delete Story</button>
-    {/if}
+    <StoryCard title={story.title} id={story.story_id} body={story.body} username={story.username}/>
     {/each}
     {/if}
+</div>  
 </ul>
