@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Stories } from './interfaces';
-	import { getContext, onDestroy } from 'svelte';
+	import { getContext, onDestroy, onMount } from 'svelte';
 	import { loggedAs } from '../store';
 	import { Heading, P } from 'flowbite-svelte';
 	let slug: number = getContext('slug');
@@ -9,10 +9,11 @@
 
 	import { fetchSingleStory, updateVotes } from '../../server';
 	import { formatDate } from '../utils/utils';
-	fetchSingleStory(slug).then((fetchedStory) => {
+
+	onMount(()=>{fetchSingleStory(slug).then((fetchedStory) => {
 		story = fetchedStory!;
 		newVotes = Number(story[0].votes);
-	});
+	})});
 
 	async function incrementVotes(votes: number, story_id: number) {
 		newVotes = votes + 1;

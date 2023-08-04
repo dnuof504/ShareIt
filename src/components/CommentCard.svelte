@@ -30,9 +30,9 @@
     
     {#each renderComments as { username, created_at, body, comment_id }}
       <li class={liCls}>
-        <span class={spanCls}>
+        <!-- <span class={spanCls}>
           <img class={imgCls} {src} {alt} />
-        </span>
+        </span> -->
         <div class={outerDivCls}>
           <div class={innerDivCls}>
             <time class={timeCls}>{formatDate(created_at)}</time>
