@@ -3,6 +3,7 @@
     import { twMerge } from 'tailwind-merge';
 	import { loggedAs } from '../store';
 	import { formatDate } from '../utils/utils';
+	import { Button } from 'flowbite-svelte';
     export let renderComments: Comment[];
     export let liClass = 'mb-10 ml-6';
     export let spanClass = 'flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900';
@@ -46,9 +47,14 @@
             </div>
           {/if}
           {#if username === $loggedAs && username !=="Anonymous"}
-          <button on:click|preventDefault={()=>{
-            handleDelete(comment_id)
-          }}>This is a delete button</button>
+
+
+<button
+class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 deleteComment"
+on:click|preventDefault={()=>{
+  handleDelete(comment_id)
+}}>Delete Comment</button>
+
           {/if}
         </div>
       </li>
