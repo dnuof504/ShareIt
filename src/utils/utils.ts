@@ -26,4 +26,4 @@ export function checkUpdatedUser (userInfo: any, userInfoCopy:any) {
     return output
 }
 
-export const formatDate = (date: Date) => new Date(date).toLocaleString()
+export const formatDate = (date: string) => new Date(date).toLocaleString()
