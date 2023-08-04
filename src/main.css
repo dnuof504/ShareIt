@@ -43,15 +43,12 @@
 }
 
 .storyButton {
-    max-width: 5rem;
+    max-width: 10rem;
     margin-left: auto;
     margin-right: auto;
     margin-top: 0px;
     margin-bottom: 0px;
     text-align: center;
-
-    
-
 }
 
 .deleteComment {
