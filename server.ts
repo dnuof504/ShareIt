@@ -213,3 +213,60 @@ return axios
 
 
 }
+
+export async function checkAvatarExists (username:string) {
+
+  const { data:folderFiles, error } = await supabase
+    .storage
+    .from('avatars')
+    .list(`${username}`)
+  folderFiles?.filter((file)=>{/^(avatar)/.test(file.name)});
+  if (folderFiles?.length) {
+    return true
+  } else {
+    return false
+  }
+
+  return true
+};
+
+
+export async function uploadUserAvatar (username:string, file: File) {
+  const allowedExtentions = ['JPEG', 'jpeg', 'jpg', 'JPG', 'png', 'PNG', 'gif', 'GIF']
+  // const extention = new RegExp('\.(jpg|JPG|gif|GIF|png|PNG)$')
+  const extention = file.name.split('.').filter(slice=>allowedExtentions.includes(slice))
+  if(extention[0] === 'jpeg') {
+    extention.pop()
+    extention.push('jpg')
+  }
+  const  {data:avatar, error} = await supabase
+    .storage
+    .from(`avatars`)
+    .upload(`${username}/avatar.${extention}`, file, {
+    cacheControl: '3600',
+    upsert: false
+    })
+    return avatar?.path
+
+}
+
+export async function replaceUserAvatar (username:string, file: File) {
+
+  const { data:folderFiles, error:fetchingError } = await supabase
+  .storage
+  .from('avatars')
+  .list(`${username}`);
+  const filesToRemove = folderFiles?.map((file) => `${username}/${file.name}`).filter((filename)=>{
+    if(/(avatar)/g.test(filename)) {
+      return filename
+    }
+  });
+  const {error:removingError} = await supabase
+  .storage
+  .from('avatars')
+  .remove(filesToRemove!)
+
+  const uploading = uploadUserAvatar(username, file)
+
+  return uploading;
+}
