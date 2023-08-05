@@ -11,8 +11,8 @@
     export let outerDivClass = 'p-4 bg-white rounded-lg border border-gray-200 shadow-sm dark:bg-gray-700 dark:border-gray-600';
     export let innerDivClass = 'justify-between items-center mb-3 sm:flex';
     export let timeClass = 'mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0';
-    export let titleClass = 'text-sm font-normal text-gray-500 lex dark:text-gray-300';
-    export let textClass = 'p-3 text-xs italic font-normal text-gray-500 bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-600 dark:border-gray-500 dark:text-gray-300';
+    export let titleClass = 'text-2xl font-normal text-purple-500 lex dark:text-gray-300';
+    export let textClass = 'p-3 text-xl italic font-normal text-black-500 bg-gray-50 rounded-lg border border-gray-200 dark:bg-black-600 dark:border-gray-500 dark:text-black-300';
     export let handleDelete:Function;
     let liCls = twMerge(liClass, $$props.classLi);
     let spanCls = twMerge(spanClass, $$props.classSpan);
@@ -48,12 +48,13 @@
           {/if}
           {#if username === $loggedAs && username !=="Anonymous"}
 
-
-<button
-class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 deleteComment"
-on:click|preventDefault={()=>{
-  handleDelete(comment_id)
-}}>Delete Comment</button>
+              <div class="deleteComment">
+              <button
+              class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 "
+              on:click|preventDefault={()=>{
+                handleDelete(comment_id)
+              }}>Delete Comment</button>
+              </div>
 
           {/if}
         </div>
