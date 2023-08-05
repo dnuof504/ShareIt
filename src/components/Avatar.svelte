@@ -28,7 +28,8 @@ async function handleSubmit2 () {
   if (!avatarExists) {
     uploadUserAvatar($loggedAs, avatar)
     .then((path)=>{
-      newUrl = `https://jxdsmvzqgqofgdetgfha.supabase.co/storage/v1/object/public/avatars/${path}`
+      console.log(path)
+      newUrl = `https://jxdsmvzqgqofgdetgfha.supabase.co/storage/v1/object/public/users/${path}`
       changeAvatar($loggedAs, newUrl)
       goto("/account")
     })
@@ -36,7 +37,8 @@ async function handleSubmit2 () {
   } else {
     replaceUserAvatar($loggedAs, avatar)
     .then((path)=>{
-      newUrl = `https://jxdsmvzqgqofgdetgfha.supabase.co/storage/v1/object/public/avatars/${path}`
+      console.log(path)
+      newUrl = `https://jxdsmvzqgqofgdetgfha.supabase.co/storage/v1/object/public/users/${path}`
       changeAvatar($loggedAs, newUrl)
       goto("/account")
     })
