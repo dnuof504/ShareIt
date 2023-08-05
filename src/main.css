@@ -46,11 +46,32 @@
     max-width: 10rem;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     text-align: center;
+    width:10rem
 }
 
 .deleteComment {
-    align-items: right;
+    text-align: right;
+}
+
+.addForm{
+    margin-left:2rem
+}
+
+#avatar{
+margin-right:0px
+}
+
+.aboutUs{
+    margin-top:2rem;
+    margin-left:10%;
+    margin-right:20%;
+
+
+}
+
+.sentimentText{
+    text-align: center;
 }
