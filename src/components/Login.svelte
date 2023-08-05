@@ -3,6 +3,7 @@
     import { checkUser } from "../utils/utils";
     import { loggedAs } from '../../src/store'
 	import { Button, Label, Input } from "flowbite-svelte";
+	import { goto } from '$app/navigation';
 
     
     const login = {

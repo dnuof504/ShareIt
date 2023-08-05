@@ -2,7 +2,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 import { changeAvatar, checkAvatarExists, replaceUserAvatar, uploadUserAvatar, } from "../../server";
-import {loggedAs} from "../store"
+import {avatarIsChanged, loggedAs} from "../store"
 import { Label, Fileupload } from 'flowbite-svelte'
 
 
@@ -22,6 +22,7 @@ let newUrl:string;
 //     changeAvatar($loggedAs,newUrl )
 //     goto("/account")
 // }
+avatarIsChanged.set(false)
 
 async function handleSubmit2 () {
   const avatarExists = await checkAvatarExists($loggedAs)
@@ -30,6 +31,7 @@ async function handleSubmit2 () {
     .then((path)=>{
       newUrl = `https://jxdsmvzqgqofgdetgfha.supabase.co/storage/v1/object/public/users/${path}`
       changeAvatar($loggedAs, newUrl)
+      avatarIsChanged.set(true)
       goto("/account")
     })
 
@@ -38,6 +40,7 @@ async function handleSubmit2 () {
     .then((path)=>{
       newUrl = `https://jxdsmvzqgqofgdetgfha.supabase.co/storage/v1/object/public/users/${path}`
       changeAvatar($loggedAs, newUrl)
+      avatarIsChanged.set(true)
       goto("/account")
     })
   }

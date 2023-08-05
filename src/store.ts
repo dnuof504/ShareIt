@@ -12,3 +12,5 @@ export const message = writable({
     email: '',
     message: '',
 })
+
+export const avatarIsChanged = writable(false)
