@@ -7,6 +7,7 @@
 	let story: Stories[] | [] = [];
 	let newVotes: number;
 	let sentimentMessage:any = null
+	let sentimentRating:any = null
 	import { fetchSingleStory, sentimentAnalysis, updateVotes } from '../../server';
 	import { formatDate } from '../utils/utils';
 
@@ -24,7 +25,9 @@
 	async function handleAnalysis (story:any){
 		await sentimentAnalysis(story.body)
 		.then((data)=>{
-			sentimentMessage=data
+			console.log(data)
+			sentimentMessage=data.general_sentiment
+			sentimentRating=data.general_sentiment_rate
 		})
 
 	}
@@ -55,7 +58,7 @@
 		</button>
 		</div>
 		{#if sentimentMessage !== null}
-		<P class="mb-3 story-text" color="text-black-500 dark:text-gray-400 text-xl">The overall sentiment rating is: {sentimentMessage}</P>
+		<P class="mb-3 story-text" color="text-black-500 dark:text-gray-400 text-xl">With a sentiment rating of {sentimentRating} the overall emotional tone of the message is: {sentimentMessage}</P>
 		{/if}
 		<div class="storyButton">
 	<button type="button" class="storyButton text-white bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 my-5 w-8" on:click={()=>{handleAnalysis(story)}}>Use the Power of AI</button>
