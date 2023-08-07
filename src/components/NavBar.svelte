@@ -10,7 +10,7 @@
 		Chevron,
 		DropdownDivider
 	} from 'flowbite-svelte';
-	import { category_slug, loggedAs } from '../store';
+	import { category_slug, loggedAs, rights } from '../store';
 	import { goto } from '$app/navigation';
 
 	let handleCategoryChange = (category: string) => {
@@ -19,6 +19,7 @@
 
 	const handleLogout = () => {
 		loggedAs.set('Anonymous');
+		rights.set("USER");
 		goto("/")
 	};
 </script>

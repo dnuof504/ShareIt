@@ -18,3 +18,69 @@
         <p class="mb-3  text-lg font-normal text-gray-700 dark:text-gray-400">Overall, ShareIt is a valuable resource for anyone who is struggling with mental health issues or who simply needs a safe and supportive space to share their thoughts and emotions. By providing a platform where people can connect with others who are going through similar experiences, the 405 Found team is helping to create a more compassionate and understanding world</p>
   </div>
 </div>
+
+
+<h2 class="text-4xl font-extrabold dark:text-white team">Meet our Team!</h2>
+
+
+<ul class="flex flex-col items-center justify-center gap-4">
+<div class="grid grid-cols-2 gap-4 place-content-center h-100 ...">
+
+
+<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+
+      <img class="rounded-t-lg" src="https://i.imgur.com/FvVc1mL.png" alt="" />
+
+  <div class="p-5">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Gary Huynh - Unpaid Intern</h5>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Found himself at the heart of a burgeoning tech startup as an unpaid intern, contributing his time and skills to the dynamic world of innovation. With an insatiable curiosity for all things tech, Gary's journey exemplifies the spirit of dedication and the pursuit of knowledge that drives the entrepreneurial landscape.</p>
+
+  </div>
+</div>
+
+
+
+
+
+<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+
+  <img class="rounded-t-lg " src="https://cdn.discordapp.com/attachments/1132982112526536816/1138117456687288380/image-of-me.jpg" alt="" />
+
+<div class="p-5">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Christina Stefan - COO</h5>
+  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Christina is a dynamic and accomplished software developer who seamlessly weaves her passion for technology with her role as a dedicated mother of two vibrant girls with a deep-rooted curiosity for all things tech-related she works hard to maintain the balance between tech and family</p>
+
+</div>
+</div>
+
+
+<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+
+  <img class="rounded-t-lg" src="https://cdn2.dumpoir.com/v1/13b31ce342edd1ecbfff2c24d352800d.jpg" alt="" />
+
+<div class="p-5">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Yaroslav "Slava" Ponomaryov - Creative Director
+      </h5>
+  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Born of wanderlust, Slava's journey has been a symphony of exploration. From bustling city squares to quiet hamlets, his guitar strums echo the experiences he's amassed along the way. His music is an eclectic blend, a fusion of cultures that tugs at nostalgia's strings and resonates with today's yearning souls.</p>
+
+</div>
+</div>
+
+
+<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+
+  <img class="rounded-t-lg" src="https://cdn.discordapp.com/attachments/1132982112526536816/1138124194421415956/image.jpeg" alt="" />
+
+<div class="p-5">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Amrutha Chilumuri - CEO</h5>
+  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">A trailblazing individual who transitioned from a celebrated career as an astronaut to a thriving software development journey, embodies the spirit of fearless reinvention. Amrutha's fascination with space and technology defined her early years, leading her to pursue a degree in aerospace engineering eventually transitioning into a career in tech.</p>
+
+</div>
+</div>
+
+
+
+
+</div>
+
+</ul>

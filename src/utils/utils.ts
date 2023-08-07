@@ -11,6 +11,7 @@ export async function checkUser (username: string, password: string) {
         })
     })
     .then((user)=>{
+
         return user
     })
 }

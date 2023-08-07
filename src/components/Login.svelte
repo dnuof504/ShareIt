@@ -1,6 +1,6 @@
 <script lang='ts'>
     import { checkUser } from "../utils/utils";
-    import { loggedAs } from '../../src/store'
+    import { loggedAs, rights } from '../../src/store'
 	import { Button, Label, Input } from "flowbite-svelte";
 	import { goto } from '$app/navigation';
 
@@ -12,6 +12,7 @@
     
     function handleLogOutClick (){
         loggedAs.set("Anonymous")
+        rights.set("USER")
     }
   
 
@@ -21,6 +22,7 @@
             if(matchedUser.length !==0)
             {
             loggedAs.set(matchedUser[0].username)
+            rights.set(matchedUser[0].permissions)
             login.username = ''
             login.password = ''
             goto('/')   }
