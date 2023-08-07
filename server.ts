@@ -267,3 +267,23 @@ export async function replaceUserAvatar (username:string, file: File) {
 
   return uploading;
 }
+
+export async function filterStories( filterBy: string, orderCriteria: string, orderBy: 'ASC' | 'DESC') {
+  let query = supabase
+    .from('stories')
+    .select()
+  
+  if (filterBy) {
+    query = query.eq('category_name', filterBy)
+  }
+  if (orderCriteria) {
+    query = query.order(orderCriteria, { ascending: orderBy === 'ASC' })
+  }
+ 
+  if (orderBy) {
+    query = query.order('category_name', { ascending: orderBy === 'ASC' })
+  }
+
+  const { data, error } = await query;
+  return data;
+}

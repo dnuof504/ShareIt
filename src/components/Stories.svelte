@@ -1,9 +1,8 @@
 <script lang='ts'>
-    import {deleteSingleStory, fetchAllStories} from "../../server"
-	import { loggedAs, stories } from "../store";
+    import { fetchAllStories} from "../../server"
+	import { stories } from "../store";
 	import AddStories from "./AddStories.svelte";
-	import StoryCard from "./StoryCard.svelte";
-    import type { Stories } from "./interfaces"
+	import StoriesQueries from "./StoriesQueries.svelte";
     import {  onDestroy } from 'svelte';
 
 let renderStories: any = [];
@@ -18,14 +17,7 @@ const unsubscribe = stories.subscribe(() => {
 onDestroy(unsubscribe);
 
 </script>
-
 <ul class="flex flex-col items-center justify-center gap-4">
     <AddStories/>
-    <div class="grid grid-cols-2 gap-4 place-content-center h-100 ...">
-    {#if renderStories.length}
-    {#each renderStories as story}
-    <StoryCard title={story.title} id={story.story_id} body={story.body} username={story.username}/>
-    {/each}
-    {/if}
-</div>  
+    <StoriesQueries />
 </ul>
