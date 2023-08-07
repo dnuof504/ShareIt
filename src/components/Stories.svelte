@@ -19,9 +19,9 @@ onDestroy(unsubscribe);
 
 </script>
 
-<ul class="flex flex-col items-center justify-center gap-4">
+<div class="flex flex-col items-center justify-center gap-4">
     <AddStories/>
-    <div class="grid grid-cols-2 gap-4 place-content-center h-100 ...">
+    <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-4 place-content-center h-100 ...">
         {#key $coverIsChanged}
     {#if renderStories.length}
     {#each renderStories as story}
@@ -30,4 +30,4 @@ onDestroy(unsubscribe);
     {/if}
     {/key}
 </div>  
-</ul>
+</div>

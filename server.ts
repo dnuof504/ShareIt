@@ -46,7 +46,7 @@ const biography = obj.biography
 const password = obj.password
 const permissions = obj.permissions
 
-  const {data, error} = await supabase
+ return await supabase
 
     .from('users')
     .insert([{
@@ -59,7 +59,7 @@ const permissions = obj.permissions
       permissions
     }])
     .select()
-  return data
+
 }
 
 export async function getStoriesByCategory(slug: string) {

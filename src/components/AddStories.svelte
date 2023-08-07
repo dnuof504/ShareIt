@@ -76,10 +76,10 @@ async function handleSubmit() {
 }
 </script>
 
-<form action="" on:submit|preventDefault={handleSubmit}>
-  <div class='mb-6'>
+<form action="" on:submit|preventDefault={handleSubmit} class="w-full">
+  <div>
     <Label for='title' class='block mb-2'>Title</Label>
-    <Input type="text" id="title" size="lg" placeholder='title' class='w-96' bind:value={newStory.title} />
+    <Input type="text" id="title" size="lg" placeholder='title'  bind:value={newStory.title} />
 </div>
 <Label for='story' class='block mb-2'>Story</Label>
   <Textarea id="story" class='w-96' bind:value={newStory.body} />
@@ -88,9 +88,9 @@ async function handleSubmit() {
   <Fileupload {...fileuploadprops} on:change={handleFileSelection}/>
   <div class='mb-6'>
     <Label for='img_url' class='block mb-2'>Image url</Label>
-    <Input type="text" id="img_url" size="lg" placeholder='image_url' class='w-96' bind:value={newStory.img_url} />
+    <Input type="text" id="img_url" size="lg" placeholder='image_url' bind:value={newStory.img_url} />
 </div>
-  <Label class='w-96'>Select a Category
+  <Label>Select a Category
     <Select class="form-select mt-2" items={dropDownCategories} bind:value={selected}  />
   </Label>
 	<button
