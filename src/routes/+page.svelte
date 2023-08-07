@@ -29,7 +29,7 @@ onDestroy(unsubscribe);
 	<ul class="grid grid-cols-2 gap-4 place-content-center h-100 ...">
 		{#if renderStories.length}
 		{#each renderStories as story}
-		<StoryCard title={story.title} id={story.story_id} body={story.body}/>
+		<StoryCard title={story.title} id={story.story_id} body={story.body} img_url={story.img_url} username={renderStories.username}/>
 		{/each}
 		{/if}
 	</ul>

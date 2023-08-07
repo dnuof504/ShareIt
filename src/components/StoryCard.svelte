@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { Button, Card } from 'flowbite-svelte';
-	import { loggedAs } from '../store';
+	import { loggedAs, coverIsChanged } from '../store';
 	import { deleteSingleStory, fetchAllStories } from '../../server';
 	import { goto } from '$app/navigation';
 	let hCard = false;
 	export let title: string;
 	export let id: number;
 	export let body: string;
-	export let username: {};
+	export let img_url: string
+	export let username: string;
 
 	let renderStories: any = [];
 
@@ -22,7 +23,7 @@
 </script>
 
 <div>
-	<Card img={`https://picsum.photos/10${id}`} href={`/stories/${id}`} horizontal>
+	<Card img={img_url} href={`/stories/${id}`} horizontal>
 		<div class="h-52">
 			<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h5>
 			<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">

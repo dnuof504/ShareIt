@@ -12,10 +12,6 @@ let fileuploadprops = {
   id : 'user_avatar'
 }
 
-let fileuploadprops2 = {
-  id : 'user_avatar2'
-}
-
 let newUrl:string;
 
 // function handleSubmit (){

@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { fetchAllStories, postStory } from "../../server";
-  import { loggedAs, stories } from "../store";
+  import { fetchAllStories, postStory, postStoryCover, updateStorysCover } from "../../server";
+  import { loggedAs, stories, coverIsChanged } from "../store";
   import { onDestroy } from 'svelte';
-  import { Textarea, Label, Select, Input } from 'flowbite-svelte'
+  import { Textarea, Label, Select, Input, Fileupload } from 'flowbite-svelte'
 
 
 
@@ -29,6 +29,13 @@
      category_name: selected,
 
 }
+let cover: File;
+
+let fileuploadprops = {
+  id : 'story_cover'
+}
+
+let postedStoryId: number;
 
 const unsubscribe = loggedAs.subscribe((newUser) => {
 		newStory.username = newUser;
@@ -38,18 +45,35 @@ const unsubscribe = loggedAs.subscribe((newUser) => {
 
 async function handleSubmit() {
    newStory.category_name = selected
-	 await postStory(newStory).then(() => {
-		 stories.update((newStory) => [...newStory]);
+	 await postStory(newStory)
+   .then((data) => {
+    postedStoryId = data![0].story_id;
+    postStoryCover(data![0].story_id, cover)
+    .then((url)=>{
+      const coverUrl= `https://jxdsmvzqgqofgdetgfha.supabase.co/storage/v1/object/public/stories/${url}`
+      newStory.img_url=coverUrl
+      updateStorysCover(postedStoryId, coverUrl).then(()=>{
+        stories.update((newStory) => [...newStory]);
+      })
+    })
+
       newStory.body = ""
             newStory.title= ""  
             newStory.img_url = ""
             selected = ""
             
 		})
-    await fetchAllStories().then((data)=> {
-         return stories
-      })
+
+    // await fetchAllStories().then((data)=> {
+    //   // console.log(data)
+    //      return stories
+    //   })
 	};
+
+
+  function handleFileSelection (e: any) {
+  cover = e.target.files[0]
+}
 </script>
 
 <form action="" on:submit|preventDefault={handleSubmit}>
@@ -59,6 +83,9 @@ async function handleSubmit() {
 </div>
 <Label for='story' class='block mb-2'>Story</Label>
   <Textarea id="story" class='w-96' bind:value={newStory.body} />
+
+  <Label class="pb-2">Upload file</Label>
+  <Fileupload {...fileuploadprops} on:change={handleFileSelection}/>
   <div class='mb-6'>
     <Label for='img_url' class='block mb-2'>Image url</Label>
     <Input type="text" id="img_url" size="lg" placeholder='image_url' class='w-96' bind:value={newStory.img_url} />

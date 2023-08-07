@@ -14,3 +14,4 @@ export const message = writable({
 })
 
 export const avatarIsChanged = writable(false)
+export const coverIsChanged = writable(false)

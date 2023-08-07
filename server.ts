@@ -267,3 +267,33 @@ export async function replaceUserAvatar (username:string, file: File) {
 
   return uploading;
 }
+
+export async function postStoryCover (story_id: number, file: File) {
+  const date = Math.floor(Date.now() / 1000);
+  const allowedExtentions = ['JPEG', 'jpeg', 'jpg', 'JPG', 'png', 'PNG', 'gif', 'GIF']
+  const extention = file.name.split('.').filter(slice=>allowedExtentions.includes(slice))
+  if(extention[0] === 'jpeg') {
+    extention.pop()
+    extention.push('jpg')
+  }
+  const  {data:cover, error} = await supabase
+    .storage
+    .from('stories')
+    .upload(`${story_id}/${story_id}-cover-${date}.${extention}`, file, {
+    cacheControl: '3600',
+    upsert: false
+    })
+    return cover?.path;
+}
+
+
+export async function updateStorysCover (storyId: number, newImgUrl: string) {
+
+  const { data: updatedCover, error} = await supabase
+  .from('stories')
+  .update({'img_url': newImgUrl})
+  .eq("story_id", storyId)
+  .select("img_url")
+  return updatedCover
+  
+}
