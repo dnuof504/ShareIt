@@ -36,6 +36,7 @@
             userInfo = data![0];
             userInfoCopy.username = userInfo.username;
             userInfoCopy.permissions = userInfo.permissions;
+            userInfoCopy.avatar_url = userInfo.avatar_url;
         })
     })
 
@@ -47,7 +48,7 @@
             userInfoCopy = {
             username: '',
             name: "",
-            avatar_url: userInfo.avatar_url,
+            avatar_url: "",
             email: "",
             biography: "",
             password: "",
@@ -79,7 +80,7 @@
             {#if userInfo.avatar_url==='https://jxdsmvzqgqofgdetgfha.supabase.co/storage/v1/object/public/default/static/default-user-pic.png'}
             <GradientButton on:click={()=>{goto("/account/avatar")}} type="button" color="green">Set Avatar</GradientButton>
             {:else}
-            <GradientButton on:click={()=>{goto("/account/avatar")}} type="button" color="green" >Update Avatar</GradientButton>
+            <GradientButton on:click={()=>{goto("/account/avatar")}} type="button" color="purple" >Update Avatar</GradientButton>
             {/if}
 
         </div>
@@ -106,7 +107,7 @@
         <Label for='password' class='block mb-2'>Password</Label>
         <Input type="password" id="password" size="lg" placeholder='Your secure password' bind:value={userInfoCopy.password} />
     </div>
-    <GradientButton type="submit" color="green" >Submit!</GradientButton>
+    <GradientButton type="submit" color="purple" >Submit!</GradientButton>
   </form>
   
   {/if}

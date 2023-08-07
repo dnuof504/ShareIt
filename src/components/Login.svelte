@@ -1,5 +1,4 @@
 <script lang='ts'>
-    import { redirect } from '@sveltejs/kit';
     import { checkUser } from "../utils/utils";
     import { loggedAs } from '../../src/store'
 	import { Button, Label, Input } from "flowbite-svelte";
@@ -13,24 +12,33 @@
     
     function handleLogOutClick (){
         loggedAs.set("Anonymous")
-}
+    }
   
 
     const handleSubmit = () => {
         checkUser(login.username, login.password)
         .then((matchedUser)=>{
+            if(matchedUser.length !==0)
+            {
             loggedAs.set(matchedUser[0].username)
             login.username = ''
             login.password = ''
+            goto('/')   }
+            else{
+                alert("Login Failed")
+                login.username=""
+                login.password=""
+            
+            }
         })
-        .then(()=>{
-            goto('/')   
-        })
+
+
+
+
     }
-
-
-
 </script>
+
+
 <h1 class="text-5xl text-center my-10">Log in</h1>
 <form action="" on:submit|preventDefault={handleSubmit} class="flex flex-col items-center justify-center">
     <div class="grid gap-6 mb-6 md:grid-cols-2">

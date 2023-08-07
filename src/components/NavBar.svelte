@@ -11,6 +11,7 @@
 		DropdownDivider
 	} from 'flowbite-svelte';
 	import { category_slug, loggedAs } from '../store';
+	import { goto } from '$app/navigation';
 
 	let handleCategoryChange = (category: string) => {
 		category_slug.set(category);
@@ -18,6 +19,7 @@
 
 	const handleLogout = () => {
 		loggedAs.set('Anonymous');
+		goto("/")
 	};
 </script>
 

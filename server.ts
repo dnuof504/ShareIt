@@ -208,7 +208,7 @@ const options = {
 return axios
 .request(options)
 .then((response)=>{
-  return response.data.ibm.general_sentiment
+  return response.data.ibm
 })
 
 
