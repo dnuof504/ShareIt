@@ -70,7 +70,7 @@
         <DropdownItem>Delete</DropdownItem>
       </Dropdown>
     </div>
-    <div class="flex flex-col items-center pb-4">
+    <div class="flex flex-col items-center pb-4 ">
         {#key $avatarIsChanged}
             <Avatar size="lg" src={userInfo.avatar_url} />
         {/key}
@@ -107,7 +107,7 @@
         <Label for='password' class='block mb-2'>Password</Label>
         <Input type="password" id="password" size="lg" placeholder='Your secure password' bind:value={userInfoCopy.password} />
     </div>
-    <GradientButton type="submit" color="purple" >Submit!</GradientButton>
+    <GradientButton class="mb-6"type="submit" color="purple" >Submit!</GradientButton>
   </form>
   
   {/if}
