@@ -16,6 +16,7 @@
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.20.4",
 		"@types/node": "^20.4.5",
+		"@types/uuid": "^9.0.2",
 		"autoprefixer": "^10.4.14",
 		"postcss": "^8.4.27",
 		"prettier": "^2.8.0",
@@ -36,6 +37,7 @@
 		"flowbite-svelte": "^0.40.2",
 		"svelte-local-storage-store": "^0.5.0",
 		"tailwind-merge": "^1.14.0",
-		"ts-node": "^10.9.1"
+		"ts-node": "^10.9.1",
+		"uuid": "^9.0.0"
 	}
 }
