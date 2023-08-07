@@ -2,6 +2,7 @@
 	import { Button, Card } from 'flowbite-svelte';
 	import { loggedAs } from '../store';
 	import { deleteSingleStory, fetchAllStories } from '../../server';
+	import { goto } from '$app/navigation';
 	let hCard = false;
 	export let title: string;
 	export let id: number;
@@ -14,7 +15,8 @@
 		await deleteSingleStory(story_id);
 
 		await fetchAllStories().then((responseStories) => {
-			renderStories = responseStories;
+			renderStories = responseStories
+			goto("/stories")
 		});
 	}
 </script>
