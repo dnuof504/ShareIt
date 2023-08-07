@@ -1,7 +1,7 @@
 <script lang='ts'>
 	import type { Comment } from 'svelte/types/compiler/interfaces';
     import { twMerge } from 'tailwind-merge';
-	import { loggedAs } from '../store';
+	import { loggedAs, rights } from '../store';
 	import { formatDate } from '../utils/utils';
 	import { Button } from 'flowbite-svelte';
     export let renderComments: Comment[];
@@ -56,6 +56,15 @@
               }}>Delete Comment</button>
               </div>
 
+              {:else if $rights === "ADMIN"}
+              <div class="deleteComment">
+                <button
+                class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 "
+                on:click|preventDefault={()=>{
+                  handleDelete(comment_id)
+                }}>Delete Comment</button>
+                </div>
+              
           {/if}
         </div>
       </li>
