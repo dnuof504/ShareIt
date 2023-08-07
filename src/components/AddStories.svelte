@@ -86,10 +86,6 @@ async function handleSubmit() {
 
   <Label class="pb-2">Upload file</Label>
   <Fileupload {...fileuploadprops} on:change={handleFileSelection}/>
-  <div class='mb-6'>
-    <Label for='img_url' class='block mb-2'>Image url</Label>
-    <Input type="text" id="img_url" size="lg" placeholder='image_url' bind:value={newStory.img_url} />
-</div>
   <Label>Select a Category
     <Select class="form-select mt-2" items={dropDownCategories} bind:value={selected}  />
   </Label>
