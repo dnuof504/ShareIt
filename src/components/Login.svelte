@@ -40,7 +40,7 @@
 
 
 <h1 class="text-5xl text-center my-10">Log in</h1>
-<form action="" on:submit|preventDefault={handleSubmit} class="flex flex-col items-center justify-center">
+<form action="" on:submit|preventDefault={handleSubmit} class="flex flex-col max-w-md mx-auto gap-2 ">
     <div class="grid gap-6 mb-6 md:grid-cols-2">
     <div>
     <Label for="username" class="mb-2">Username</Label>

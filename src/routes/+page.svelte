@@ -26,7 +26,7 @@ onDestroy(unsubscribe);
 		<Main />
 	</div>
 
-	<ul class="grid grid-cols-2 gap-4 place-content-center h-100 ...">
+	<ul class="grid sm:grid-cols-1 md:grid-cols-2 gap-4 place-content-center h-100 ...">
 		{#if renderStories.length}
 		{#each renderStories as story}
 		<StoryCard title={story.title} id={story.story_id} body={story.body}/>
