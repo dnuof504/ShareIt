@@ -12,7 +12,7 @@
         Input,
         Textarea  } from "flowbite-svelte";
     import { fetchUser, patchUser } from "../../server";
-    import { loggedAs } from '../../src/store'
+    import { avatarIsChanged, loggedAs } from '../../src/store'
 	import type { Users } from "./interfaces";
 	import { Permissions } from "./enums";
 	import { checkUpdatedUser } from "../utils/utils";
@@ -70,13 +70,15 @@
         <DropdownItem>Delete</DropdownItem>
       </Dropdown>
     </div>
-    <div class="flex flex-col items-center pb-4" id="avatar">
-      <Avatar size="lg" src={userInfo.avatar_url} />
+    <div class="flex flex-col items-center pb-4">
+        {#key $avatarIsChanged}
+            <Avatar size="lg" src={userInfo.avatar_url} />
+        {/key}
         <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{userInfo.username}</h5>
         <span class="text-sm text-gray-500 dark:text-gray-400">{userInfo.biography}</span>
         <div class="flex mt-4 space-x-3 lg:mt-6">
-            {#if userInfo.avatar_url==='https://villagesonmacarthur.com/wp-content/uploads/2020/12/Blank-Avatar.png'}
-            <GradientButton on:click={()=>{goto("/account/avatar")}} type="button" color="purple">Set Avatar</GradientButton>
+            {#if userInfo.avatar_url==='https://jxdsmvzqgqofgdetgfha.supabase.co/storage/v1/object/public/default/static/default-user-pic.png'}
+            <GradientButton on:click={()=>{goto("/account/avatar")}} type="button" color="green">Set Avatar</GradientButton>
             {:else}
             <GradientButton on:click={()=>{goto("/account/avatar")}} type="button" color="purple" >Update Avatar</GradientButton>
             {/if}

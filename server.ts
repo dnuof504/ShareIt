@@ -208,9 +208,62 @@ const options = {
 return axios
 .request(options)
 .then((response)=>{
-  console.log(response.data.ibm)
   return response.data.ibm
 })
 
 
+}
+
+export async function checkAvatarExists (username:string) {
+
+  const { data:folderFiles, error } = await supabase
+    .storage
+    .from('users')
+    .list(`${username}/avatar`)
+  folderFiles?.filter((file)=>{/^(avatar)/.test(file.name)});
+  if (folderFiles?.length) {
+    return true
+  } else {
+    return false
+  }
+
+  return true
+};
+
+
+export async function uploadUserAvatar (username:string, file: File) {
+  const date = Math.floor(Date.now() / 1000);
+  const allowedExtentions = ['JPEG', 'jpeg', 'jpg', 'JPG', 'png', 'PNG', 'gif', 'GIF']
+  // const extention = new RegExp('\.(jpg|JPG|gif|GIF|png|PNG)$')
+  const extention = file.name.split('.').filter(slice=>allowedExtentions.includes(slice))
+  if(extention[0] === 'jpeg') {
+    extention.pop()
+    extention.push('jpg')
+  }
+  const  {data:avatar, error} = await supabase
+    .storage
+    .from('users')
+    .upload(`${username}/avatar/${username}-avatar-${date}.${extention}`, file, {
+    cacheControl: '3600',
+    upsert: false
+    })
+    return avatar?.path
+
+}
+
+export async function replaceUserAvatar (username:string, file: File) {
+
+  const { data:folderFiles, error:fetchingError } = await supabase
+  .storage
+  .from('users')
+  .list(`${username}/avatar`);
+  const filesToRemove = folderFiles?.map((file) => `${username}/avatar/${file.name}`);
+  const {error:removingError} = await supabase
+  .storage
+  .from('users')
+  .remove(filesToRemove!)
+
+  const uploading = uploadUserAvatar(username, file)
+
+  return uploading;
 }

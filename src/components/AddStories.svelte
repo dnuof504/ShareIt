@@ -40,7 +40,6 @@ async function handleSubmit() {
    newStory.category_name = selected
 	 await postStory(newStory).then(() => {
 		 stories.update((newStory) => [...newStory]);
-      console.log(newStory)
       newStory.body = ""
             newStory.title= ""  
             newStory.img_url = ""

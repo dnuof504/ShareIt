@@ -7,7 +7,7 @@
     let newUser:Users = {
         username: "",
         name: "",
-        avatar_url: "https://villagesonmacarthur.com/wp-content/uploads/2020/12/Blank-Avatar.png",
+        avatar_url: "https://jxdsmvzqgqofgdetgfha.supabase.co/storage/v1/object/public/default/static/default-user-pic.png",
         email: "",
         biography: "",
         password: "",
@@ -19,7 +19,7 @@ function handleSubmit (){
     newUser={
         username: "",
         name: "",
-        avatar_url: "https://villagesonmacarthur.com/wp-content/uploads/2020/12/Blank-Avatar.png",
+        avatar_url: "https://jxdsmvzqgqofgdetgfha.supabase.co/storage/v1/object/public/default/static/default-user-pic.png",
         email: "",
         biography: "",
         password: "",
