@@ -25,7 +25,6 @@
 	async function handleAnalysis (story:any){
 		await sentimentAnalysis(story.body)
 		.then((data)=>{
-			console.log(data)
 			sentimentMessage=data.general_sentiment
 			sentimentRating=data.general_sentiment_rate
 		})

@@ -44,30 +44,17 @@ const unsubscribe = loggedAs.subscribe((newUser) => {
 
 
 async function handleSubmit() {
-   newStory.category_name = selected
-	 await postStory(newStory)
-   .then((data) => {
-    postedStoryId = data![0].story_id;
-    postStoryCover(data![0].story_id, cover)
-    .then((url)=>{
-      const coverUrl= `https://jxdsmvzqgqofgdetgfha.supabase.co/storage/v1/object/public/stories/${url}`
-      newStory.img_url=coverUrl
-      updateStorysCover(postedStoryId, coverUrl).then(()=>{
-        stories.update((newStory) => [...newStory]);
-      })
-    })
-
-      newStory.body = ""
-            newStory.title= ""  
-            newStory.img_url = ""
-            selected = ""
-            
-		})
-
-    // await fetchAllStories().then((data)=> {
-    //   // console.log(data)
-    //      return stories
-    //   })
+  let coverUrl= `https://jxdsmvzqgqofgdetgfha.supabase.co/storage/v1/object/public/stories/`
+  newStory.category_name = selected
+  const urlPart = await postStoryCover(cover)
+  coverUrl+=urlPart
+  newStory.img_url=coverUrl
+	await postStory(newStory)
+  stories.update((newStory) => [...newStory]);
+  newStory.body = ""
+  newStory.title= ""  
+  newStory.img_url = ""
+  selected = ""
 	};
 
 
@@ -86,10 +73,6 @@ async function handleSubmit() {
 
   <Label class="pb-2">Upload file</Label>
   <Fileupload {...fileuploadprops} on:change={handleFileSelection}/>
-  <div class='mb-6'>
-    <Label for='img_url' class='block mb-2'>Image url</Label>
-    <Input type="text" id="img_url" size="lg" placeholder='image_url' bind:value={newStory.img_url} />
-</div>
   <Label>Select a Category
     <Select class="form-select mt-2" items={dropDownCategories} bind:value={selected}  />
   </Label>

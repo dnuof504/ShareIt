@@ -2,6 +2,7 @@ import type { Comment, Users, Story } from './src/components/interfaces';
 import {supabase} from './src/lib/supabaseClient';
 import axios from 'axios';
 import { sentiment } from './src/store';
+import {v4 as uuidv4} from 'uuid';
 
 export async function fetchAllComments () {
 
@@ -12,7 +13,6 @@ export async function fetchAllComments () {
 }
 
 export async function fetchAllStories () {
-
     const { data, error } = await supabase
       .from('stories')
       .select()
@@ -268,8 +268,8 @@ export async function replaceUserAvatar (username:string, file: File) {
   return uploading;
 }
 
-export async function postStoryCover (story_id: number, file: File) {
-  const date = Math.floor(Date.now() / 1000);
+export async function postStoryCover (file: File) {
+  const imageId = uuidv4()
   const allowedExtentions = ['JPEG', 'jpeg', 'jpg', 'JPG', 'png', 'PNG', 'gif', 'GIF']
   const extention = file.name.split('.').filter(slice=>allowedExtentions.includes(slice))
   if(extention[0] === 'jpeg') {
@@ -279,7 +279,7 @@ export async function postStoryCover (story_id: number, file: File) {
   const  {data:cover, error} = await supabase
     .storage
     .from('stories')
-    .upload(`${story_id}/${story_id}-cover-${date}.${extention}`, file, {
+    .upload(`covers/story-cover-${imageId}.${extention}`, file, {
     cacheControl: '3600',
     upsert: false
     })
