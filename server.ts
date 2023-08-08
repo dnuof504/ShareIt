@@ -327,6 +327,9 @@ export async function fetchAllQuotes () {
   const { data, error } = await supabase
     .from('quotes')
     .select()
+  if (error) {
+    return error
+  }
   return data
 }
 

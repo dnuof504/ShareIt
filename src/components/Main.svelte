@@ -1,11 +1,13 @@
 <script lang="ts">
     import { Blockquote } from 'flowbite-svelte'
     import { fetchAllQuotes } from '../../server';
+	import { onMount } from 'svelte';
     let quotes:[]|any = []
     let value:number = 0
     let singleQuote:any = null
-  async function getQuotes (){
-    await fetchAllQuotes()
+
+  onMount(()=>{
+    fetchAllQuotes()
     .then((data:any)=>{
       quotes = [...data]
       value = Math.ceil(Math.random() * (quotes.length))
@@ -17,9 +19,10 @@
       } 
 
     })
-  }
-
-  getQuotes()
+    .catch((err)=>{
+      console.log(err)
+    })
+  })
 
 
   </script>
