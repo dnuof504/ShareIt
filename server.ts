@@ -321,3 +321,11 @@ export async function updateStorysCover (storyId: number, newImgUrl: string) {
   return updatedCover
   
 }
+
+
+export async function fetchAllQuotes () {
+  const { data, error } = await supabase
+    .from('quotes')
+    .select()
+  return data
+}
