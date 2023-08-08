@@ -321,3 +321,36 @@ export async function updateStorysCover (storyId: number, newImgUrl: string) {
   return updatedCover
   
 }
+
+export async function deleteUserAvatar (username:string) {
+
+  const { data:folderFiles, error:fetchingError } = await supabase
+  .storage
+  .from('users')
+  .list(`${username}/avatar`);
+  if (folderFiles?.length) {
+    const filesToRemove = folderFiles?.map((file) => `${username}/avatar/${file.name}`);
+      const {error:removingError} = await supabase
+      .storage
+      .from('users')
+      .remove(filesToRemove!)
+    if (removingError) {
+      return removingError
+    }
+  }
+  if (fetchingError) {
+    return fetchingError
+  }
+}
+
+
+export async function deleteStoryImage (img_url:string) {
+  const image_name = img_url.match(/([^\/]+$)/g)
+      const {error:removingError} = await supabase
+      .storage
+      .from('stories')
+      .remove([`covers/${image_name}`])
+    if (removingError) {
+      return removingError
+    }
+}
