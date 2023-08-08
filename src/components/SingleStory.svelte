@@ -33,7 +33,7 @@
 			} else {
 				isError= {
 					msg: err.message, 
-					status: err.name
+					status: Number(err.name)
 				}
 			}
 		})
