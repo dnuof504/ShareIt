@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	import { stories } from '../store';
 	import { filterStories } from '../../server';
 	import { Label, Listgroup, ListgroupItem, Select } from 'flowbite-svelte';
@@ -17,9 +17,18 @@
 
 	onMount(updateFilteredStories);
 
+	const unsubscribe = stories.subscribe(() => {
+		filterStories(filterBy, orderCriteria, sortBy)
+    .then((data)=>{
+        filteredStories = data!
+    })
+	})
+
+
 	function handleFilterChange() {
 		updateFilteredStories();
 	}
+	onDestroy(unsubscribe)
 </script>
 
 <main class="flex flex-col items-center justify-center gap-4">

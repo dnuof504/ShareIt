@@ -276,12 +276,16 @@ export async function filterStories( filterBy: string, orderCriteria: string, or
   if (filterBy) {
     query = query.eq('category_name', filterBy)
   }
+
   if (orderCriteria) {
     query = query.order(orderCriteria, { ascending: orderBy === 'ASC' })
   }
  
   if (orderBy) {
     query = query.order('category_name', { ascending: orderBy === 'ASC' })
+  } else {
+    query = query.order('created_at', { ascending: false })
+
   }
 
   const { data, error } = await query;
