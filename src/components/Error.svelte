@@ -1,14 +1,22 @@
 <script lang='ts'>
-    export let errorCode:number;
-    export let errorMsg:string;
-
+    export let status:number;
+    export let msg:string;
 </script>
 
-<section role="alert">
-    <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
-      {errorCode}
+<main class="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
+  <div class="text-center">
+    <p class="text-base font-semibold text-indigo-600">{status}</p>
+    <h1 class="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">{msg}</h1>
+    {#if status===400}
+    <p class="mt-6 text-base leading-7 text-gray-600">You've made a bad request. Try another URL format!</p>
+    {:else if status===404}
+    <p class="mt-6 text-base leading-7 text-gray-600">Sorry, content you're looking for is not found.</p>
+    {:else}
+    <p class="mt-6 text-base leading-7 text-gray-600">Something is wrong...</p>
+    {/if}
+    <div class="mt-10 flex items-center justify-center gap-x-6">
+      <a href="/" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Go back home</a>
+      <a href="/contact" class="text-sm font-semibold text-gray-900">Contact support <span aria-hidden="true">&rarr;</span></a>
     </div>
-    <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
-      <p>{errorMsg}</p>
-    </div>
-  </section>
+  </div>
+</main>
