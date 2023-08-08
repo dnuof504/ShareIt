@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { fetchAllStories, postStory } from "../../server";
-  import { loggedAs, stories } from "../store";
+  import { fetchAllStories, postStory, postStoryCover, updateStorysCover } from "../../server";
+  import { loggedAs, stories, coverIsChanged } from "../store";
   import { onDestroy } from 'svelte';
-  import { Textarea, Label, Select, Input } from 'flowbite-svelte'
+  import { Textarea, Label, Select, Input, Fileupload } from 'flowbite-svelte'
 
 
 
@@ -29,6 +29,13 @@
      category_name: selected,
 
 }
+let cover: File;
+
+let fileuploadprops = {
+  id : 'story_cover'
+}
+
+let postedStoryId: number;
 
 const unsubscribe = loggedAs.subscribe((newUser) => {
 		newStory.username = newUser;
@@ -37,33 +44,36 @@ const unsubscribe = loggedAs.subscribe((newUser) => {
 
 
 async function handleSubmit() {
-   newStory.category_name = selected
-	 await postStory(newStory).then(() => {
-		 stories.update((newStory) => [...newStory]);
-      newStory.body = ""
-            newStory.title= ""  
-            newStory.img_url = ""
-            selected = ""
-            
-		})
-    await fetchAllStories().then((data)=> {
-         return stories
-      })
+  let coverUrl= `https://jxdsmvzqgqofgdetgfha.supabase.co/storage/v1/object/public/stories/`
+  newStory.category_name = selected
+  const urlPart = await postStoryCover(cover)
+  coverUrl+=urlPart
+  newStory.img_url=coverUrl
+	await postStory(newStory)
+  stories.update((newStory) => [...newStory]);
+  newStory.body = ""
+  newStory.title= ""  
+  newStory.img_url = ""
+  selected = ""
 	};
+
+
+  function handleFileSelection (e: any) {
+  cover = e.target.files[0]
+}
 </script>
 
-<form action="" on:submit|preventDefault={handleSubmit}>
-  <div class='mb-6'>
+<form action="" on:submit|preventDefault={handleSubmit} class="w-full">
+  <div>
     <Label for='title' class='block mb-2'>Title</Label>
-    <Input type="text" id="title" size="lg" placeholder='title' class='w-96' bind:value={newStory.title} />
+    <Input type="text" id="title" size="lg" placeholder='title'  bind:value={newStory.title} />
 </div>
 <Label for='story' class='block mb-2'>Story</Label>
   <Textarea id="story" class='w-96' bind:value={newStory.body} />
-  <div class='mb-6'>
-    <Label for='img_url' class='block mb-2'>Image url</Label>
-    <Input type="text" id="img_url" size="lg" placeholder='image_url' class='w-96' bind:value={newStory.img_url} />
-</div>
-  <Label class='w-96'>Select a Category
+
+  <Label class="pb-2">Upload file</Label>
+  <Fileupload {...fileuploadprops} on:change={handleFileSelection}/>
+  <Label>Select a Category
     <Select class="form-select mt-2" items={dropDownCategories} bind:value={selected}  />
   </Label>
 	<button

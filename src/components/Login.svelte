@@ -1,6 +1,6 @@
 <script lang='ts'>
     import { checkUser } from "../utils/utils";
-    import { loggedAs } from '../../src/store'
+    import { loggedAs, rights } from '../../src/store'
 	import { Button, Label, Input } from "flowbite-svelte";
 	import { goto } from '$app/navigation';
 
@@ -12,6 +12,7 @@
     
     function handleLogOutClick (){
         loggedAs.set("Anonymous")
+        rights.set("USER")
     }
   
 
@@ -21,6 +22,7 @@
             if(matchedUser.length !==0)
             {
             loggedAs.set(matchedUser[0].username)
+            rights.set(matchedUser[0].permissions)
             login.username = ''
             login.password = ''
             goto('/')   }
@@ -40,7 +42,7 @@
 
 
 <h1 class="text-5xl text-center my-10">Log in</h1>
-<form action="" on:submit|preventDefault={handleSubmit} class="flex flex-col items-center justify-center">
+<form action="" on:submit|preventDefault={handleSubmit} class="flex flex-col max-w-md mx-auto gap-2 ">
     <div class="grid gap-6 mb-6 md:grid-cols-2">
     <div>
     <Label for="username" class="mb-2">Username</Label>

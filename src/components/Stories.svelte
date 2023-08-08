@@ -1,6 +1,6 @@
 <script lang='ts'>
-    import { fetchAllStories} from "../../server"
-	import { stories } from "../store";
+    import {deleteSingleStory, fetchAllStories} from "../../server"
+	import { loggedAs, stories, coverIsChanged } from "../store";
 	import AddStories from "./AddStories.svelte";
 	import StoriesQueries from "./StoriesQueries.svelte";
     import {  onDestroy } from 'svelte';
@@ -17,7 +17,7 @@ const unsubscribe = stories.subscribe(() => {
 onDestroy(unsubscribe);
 
 </script>
-<ul class="flex flex-col items-center justify-center gap-4">
+<div class="flex flex-col items-center justify-center gap-4">
     <AddStories/>
     <StoriesQueries />
-</ul>
+</div>

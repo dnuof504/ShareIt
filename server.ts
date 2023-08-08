@@ -2,6 +2,7 @@ import type { Comment, Users, Story } from './src/components/interfaces';
 import {supabase} from './src/lib/supabaseClient';
 import axios from 'axios';
 import { sentiment } from './src/store';
+import {v4 as uuidv4} from 'uuid';
 
 export async function fetchAllComments () {
 
@@ -12,7 +13,6 @@ export async function fetchAllComments () {
 }
 
 export async function fetchAllStories () {
-
     const { data, error } = await supabase
       .from('stories')
       .select()
@@ -46,7 +46,7 @@ const biography = obj.biography
 const password = obj.password
 const permissions = obj.permissions
 
-  const {data, error} = await supabase
+ return await supabase
 
     .from('users')
     .insert([{
@@ -59,7 +59,7 @@ const permissions = obj.permissions
       permissions
     }])
     .select()
-  return data
+
 }
 
 export async function getStoriesByCategory(slug: string) {
@@ -286,4 +286,34 @@ export async function filterStories( filterBy: string, orderCriteria: string, or
 
   const { data, error } = await query;
   return data;
+}
+
+export async function postStoryCover (file: File) {
+  const imageId = uuidv4()
+  const allowedExtentions = ['JPEG', 'jpeg', 'jpg', 'JPG', 'png', 'PNG', 'gif', 'GIF']
+  const extention = file.name.split('.').filter(slice=>allowedExtentions.includes(slice))
+  if(extention[0] === 'jpeg') {
+    extention.pop()
+    extention.push('jpg')
+  }
+  const  {data:cover, error} = await supabase
+    .storage
+    .from('stories')
+    .upload(`covers/story-cover-${imageId}.${extention}`, file, {
+    cacheControl: '3600',
+    upsert: false
+    })
+    return cover?.path;
+}
+
+
+export async function updateStorysCover (storyId: number, newImgUrl: string) {
+
+  const { data: updatedCover, error} = await supabase
+  .from('stories')
+  .update({'img_url': newImgUrl})
+  .eq("story_id", storyId)
+  .select("img_url")
+  return updatedCover
+  
 }

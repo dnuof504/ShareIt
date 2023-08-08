@@ -131,6 +131,7 @@
 					id={story.story_id}
 					body={story.body}
 					username={story.username}
+					img_url={story.img_url}
 				/>
 			{/each}
 		</ul>
