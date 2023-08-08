@@ -98,7 +98,9 @@
 			{/each}
 			<br />
 			<br />
-			<SingleStoryComments/>
 			{/if}
 			{/if}
 		</ul>
+		{#if story.length}
+		<SingleStoryComments/>
+		{/if}
