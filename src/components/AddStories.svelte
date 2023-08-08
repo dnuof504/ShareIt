@@ -63,7 +63,7 @@ async function handleSubmit() {
 }
 </script>
 
-<form action="" on:submit|preventDefault={handleSubmit} class="w-full">
+<form action="" on:submit|preventDefault={handleSubmit} class="w-96">
   <div>
     <Label for='title' class='block mb-2'>Title</Label>
     <Input type="text" id="title" size="lg" placeholder='title'  bind:value={newStory.title} required />
@@ -78,7 +78,7 @@ async function handleSubmit() {
   </Label>
 	<button
 		type="submit"
-		class="text-white bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 my-5"
+		class="text-white bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-2 py-1.5 text-center mr-2 mb-2 my-1"
 		>Add Story</button
 	>
 </form>

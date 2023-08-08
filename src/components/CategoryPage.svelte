@@ -1,34 +1,30 @@
-<script lang='ts'>
-    import { getStoriesByCategory } from '../../server'; 
-    import { getContext} from 'svelte';
-    import { category_slug} from '../store'
-	  import { Card } from 'flowbite-svelte';
+<script lang="ts">
+	import { getStoriesByCategory } from '../../server';
+	import { getContext } from 'svelte';
+	import { category_slug } from '../store';
+	import { Card } from 'flowbite-svelte';
+	import StoryCard from './StoryCard.svelte';
 
-    let categoryName:string = getContext('category_name')
-    let stories:any= [];
-  
-    category_slug.subscribe((newCategory)=>{
-      getStoriesByCategory(newCategory)
-        .then((fetchedStories)=>{
-            stories=fetchedStories!
-        })
-})
+	let categoryName: string = getContext('category_name');
+	let stories: any = [];
 
+	category_slug.subscribe((newCategory) => {
+		getStoriesByCategory(newCategory).then((fetchedStories) => {
+			stories = fetchedStories!;
+		});
+	});
+</script>
 
-  </script>
-
-
-<ul class="flex flex-col items-center justify-center gap-4 ">
-  {#each stories as story}
-  <Card img={story.img_url} href={`/stories/${story.story_id}`} horizontal>
-    <div class="h-52">
-    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{story.title}</h5>
-    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">
-      {story.body.slice(0, 35)}...
-    </p>
-  </div>
-</Card>
-  {/each}
-</ul>
-
-
+<section class="flex flex-col items-center justify-center gap-4">
+	<div class="grid md:grid-cols-2 sm:grid-cols-1 gap-4 place-content-center h-100">
+		{#each stories as story}
+			<StoryCard
+				title={story.title}
+				id={story.story_id}
+				body={story.body}
+				username={story.username}
+				img_url={story.img_url}
+			/>
+		{/each}
+	</div>
+</section>

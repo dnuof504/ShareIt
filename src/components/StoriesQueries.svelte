@@ -2,7 +2,6 @@
 	import { onMount, onDestroy } from 'svelte';
 	import { stories } from '../store';
 	import { filterStories } from '../../server';
-	import { Label, Listgroup, ListgroupItem, Select } from 'flowbite-svelte';
 	import StoryCard from './StoryCard.svelte';
 
 	let orderCriteria: string;
@@ -18,17 +17,16 @@
 	onMount(updateFilteredStories);
 
 	const unsubscribe = stories.subscribe(() => {
-		filterStories(filterBy, orderCriteria, sortBy)
-    .then((data)=>{
-        filteredStories = data!
-    })
-	})
-
+		filterStories(filterBy, orderCriteria, sortBy).then((data) => {
+			filteredStories = data!;
+		});
+	});
 
 	function handleFilterChange() {
+		// orderCriteria = selectedValue;
 		updateFilteredStories();
 	}
-	onDestroy(unsubscribe)
+	onDestroy(unsubscribe);
 </script>
 
 <main class="flex flex-col items-center justify-center gap-4">
@@ -80,61 +78,66 @@
 				<span class="sr-only">Close menu</span>
 			</button>
 
-			<div class="mb-6">
-				<Listgroup active class="w-72">
-					<ListgroupItem class="text-base font-semibold gap-2">
-						<Label for="order" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-							>Order by:</Label
+			<div class="mb-6 w-72">
+				<div class="text-base font-semibold gap-2">
+					<label for="order" class="block mb-2 text-gray-900 dark:text-white"
+							>Order by:</label
 						>
-						<Select
+						<select
 							id="order"
 							name="filterOption"
 							bind:value={orderCriteria}
 							on:change={handleFilterChange}
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 						>
-							<option value="created_at">Date</option>
-							<option value="votes">Votes</option>
-						</Select>
-					</ListgroupItem>
+							<option value="created_at" style="font-size: 16px">Date</option>
+							<option value="votes" style="font-size: 16px">Votes</option>
+						</select>
 
-					<ListgroupItem class="text-base font-semibold gap-2">
-						<Label
-							for="categories"
-							class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-							>Categories:</Label
-						>
-						<Select
-							id="categories"
-							name="filterOption"
-							bind:value={filterBy}
-							on:change={handleFilterChange}
-						>
-							<option value="workplace">Workplace</option>
-							<option value="romance">Romance</option>
-							<option value="family">Family</option>
-							<option value="friends">Friends</option>
-							<option value="pets">Pets</option>
-							<option value="general">General</option>
-						</Select>
-					</ListgroupItem>
+				</div>
 
-					<ListgroupItem class="text-base font-semibold gap-2">
-						<Label for="sort" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-							>Sort:</Label
-						>
-						<Select id="sort" name="orderOption" bind:value={sortBy} on:change={handleFilterChange}>
-							<option value="ASC">Ascending</option>
-							<option value="DESC">Descending</option>
-						</Select>
-					</ListgroupItem>
-				</Listgroup>
+				<div class="text-base font-semibold gap-2">
+					<label
+						for="categories"
+						class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categories:</label
+					>
+					<select
+						id="categories"
+						name="filterOption"
+						bind:value={filterBy}
+						on:change={handleFilterChange}
+						class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+					>
+						<option value="workplace" class="text-lg">Workplace</option>
+						<option value="romance">Romance</option>
+						<option value="family">Family</option>
+						<option value="friends">Friends</option>
+						<option value="pets">Pets</option>
+						<option value="general">General</option>
+					</select>
+				</div>
+
+				<div class="text-base font-semibold gap-2">
+					<label for="sort" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+						>Sort:</label
+					>
+					<select
+						id="sort"
+						name="orderOption"
+						bind:value={sortBy}
+						on:change={handleFilterChange}
+						class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+					>
+						<option value="ASC">Ascending</option>
+						<option value="DESC">Descending</option>
+					</select>
+				</div>
 			</div>
 		</div>
 	</section>
-		
 
 	<div class="flex flex-col items-center justify-center gap-4">
-		<ul class="grid grid-cols-2 gap-4 place-content-center h-100 ...">
+		<ul class="grid md:grid-cols-2 sm:grid-cols-1 gap-4 place-content-center h-100">
 			{#each filteredStories as story}
 				<StoryCard
 					title={story.title}
