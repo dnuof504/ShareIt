@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { stories } from '../store';
 	import { filterStories } from '../../server';
 	import { Label, Listgroup, ListgroupItem, Select } from 'flowbite-svelte';
 	import StoryCard from './StoryCard.svelte';
