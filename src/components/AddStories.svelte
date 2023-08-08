@@ -66,15 +66,15 @@ async function handleSubmit() {
 <form action="" on:submit|preventDefault={handleSubmit} class="w-96">
   <div>
     <Label for='title' class='block mb-2'>Title</Label>
-    <Input type="text" id="title" size="lg" placeholder='title'  bind:value={newStory.title} />
+    <Input type="text" id="title" size="lg" placeholder='title'  bind:value={newStory.title} required />
 </div>
 <Label for='story' class='block mb-2'>Story</Label>
-  <Textarea id="story" class='w-96' bind:value={newStory.body} />
+  <Textarea id="story" class='w-96' bind:value={newStory.body} required/>
 
   <Label class="pb-2">Upload file</Label>
   <Fileupload {...fileuploadprops} on:change={handleFileSelection}/>
   <Label>Select a Category
-    <Select class="form-select mt-2" items={dropDownCategories} bind:value={selected}  />
+    <Select class="form-select mt-2" items={dropDownCategories} bind:value={selected} required />
   </Label>
 	<button
 		type="submit"
