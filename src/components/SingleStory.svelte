@@ -45,20 +45,20 @@
 			{#each story as story}
 
 
-<section class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xxl  dark:border-gray-700 dark:bg-gray-800 ">
+<section class="flex flex-col items-center content-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xxl  dark:border-gray-700 dark:bg-gray-800 ">
 	<div class="flex flex-col justify-between p-4 leading-normal story-body">
 		<Heading tag="h1" class="mb-4" customSize="text-4xl font-extrabold  md:text-5xl lg:text-6xl text-center">{story.title}</Heading>
-		<img class="object-cover  rounded-t-lg h-96 md:h-auto md:w-auto md:rounded-none md:rounded-l-lg img md:rounded-r-lg " src={story.img_url} alt="">
-		<P class="mb-3 story-text" color="text-black-500 dark:text-gray-400 text-xl" >{story.body}</P>
-		<P class=" flex flow-row props-block story-text text-lg" color="text-black-500 dark:text-gray-400">
+		<img class="object-cover rounded-t-lg rounded-b-lg h-96 md:h-auto md:w-auto md:rounded-none md:rounded-l-lg img md:rounded-r-lg " src={story.img_url} alt="">
+		<P class="mb-3 story-text" color="text-black-500 dark:text-gray-400 text-lg p-6 text-center" >{story.body}</P>
+		<P class="flex flow-row shrink space-between text-center h-14 props-block story-text text-sm" color="text-black-500 dark:text-gray-400">
 			<div>❤ {newVotes}</div>
 			<div>Author: {story.username}</div>
 			<div>Category: {story.category_name}</div>
 			<div>Posted at: {formatDate(story.created_at)}</div>
 		</P>
-		<div class="storyButton">
+		<div class="self-center my-4">
 		<button type="button"
-		class="storyButton text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+		class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-2.5 py-1.5 text-center mr-2 mb-2"
 		on:click={() => incrementVotes(story.votes, story.story_id)}
 		>Support ❤
 		</button>
@@ -67,8 +67,8 @@
 		<P class="mb-3 story-text" color="text-black-500 dark:text-gray-400 text-xl">With a sentiment rating of {sentimentRating} the overall emotional tone of the message is: {sentimentMessage}</P>
 		{/if}
 	{#if $rights === "ADMIN"}
-		<div class="storyButton">
-	<button type="button" class="storyButton text-white bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 my-5 w-8" on:click={()=>{handleAnalysis(story)}}>Use the Power of AI</button>
+		<div class="self-center">
+	<button type="button" class="text-white bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-2.5 py-1.5 text-center mr-2 mb-2 my-5 w-auto" on:click={()=>{handleAnalysis(story)}}>Use the Power of AI</button>
 
 		</div>
 	{/if}
@@ -99,11 +99,6 @@
 					<P class="mb-3" weight="light" color="text-black-500 dark:text-gray-400">Author: {story.username}</P>
 					<P class="mb-3" weight="light" color="text-black-500 dark:text-gray-400">Category: {story.category_name}</P>
 				</li> -->
-				<br />
-
-				<br />
 			{/each}
 		{/if}
-		<br />
-		<br />
 </ul>
