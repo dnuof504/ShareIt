@@ -8,13 +8,20 @@
 	let newVotes: number;
 	let sentimentMessage:any = null
 	let sentimentRating:any = null
+	let isError: {} | null  = null;
 	import { fetchSingleStory, sentimentAnalysis, updateVotes } from '../../server';
 	import { formatDate } from '../utils/utils';
 
-	onMount(()=>{fetchSingleStory(slug).then((fetchedStory) => {
+	onMount(()=>{
+		fetchSingleStory(slug)
+		.then((fetchedStory) => {
 		story = fetchedStory!;
-		newVotes = Number(story[0].votes);
-	})});
+		newVotes = Number(story[0].votes)
+		})
+		.catch((err)=>{
+			console.log(err)
+		})
+	});
 
 	async function incrementVotes(votes: number, story_id: number) {
 		newVotes = votes + 1;

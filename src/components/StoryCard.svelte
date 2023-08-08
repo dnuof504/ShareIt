@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Button, Card } from 'flowbite-svelte';
 	import { loggedAs, rights, coverIsChanged } from '../store';
-	import { deleteSingleStory, fetchAllStories } from '../../server';
+	import { deleteSingleStory, deleteStoryImage, fetchAllStories } from '../../server';
 	import { goto } from '$app/navigation';
 	let hCard = false;
 	export let title: string;
@@ -12,9 +12,9 @@
 
 	let renderStories: any = [];
 
-	async function handleDeleteClick(story_id: number) {
+	async function handleDeleteClick(story_id: number, img_url: string) {
 		await deleteSingleStory(story_id);
-
+		await deleteStoryImage(img_url)
 		await fetchAllStories().then((responseStories) => {
 			renderStories = responseStories
 			goto("/stories")
@@ -39,13 +39,13 @@
 				<Button
 					type="button"
 					class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 my-5"
-					on:click={() => handleDeleteClick(id)}>Delete Story</Button
+					on:click={() => handleDeleteClick(id, img_url)}>Delete Story</Button
 				>
 				{:else if $rights === "ADMIN"}
 				<Button
 				type="button"
 				class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 my-5"
-				on:click={() => handleDeleteClick(id)}>Delete Story</Button
+				on:click={() => handleDeleteClick(id, img_url)}>Delete Story</Button
 			>
 			{/if}
 		</div>
