@@ -322,6 +322,14 @@ export async function updateStorysCover (storyId: number, newImgUrl: string) {
   
 }
 
+
+export async function fetchAllQuotes () {
+  const { data, error } = await supabase
+    .from('quotes')
+    .select()
+  return data
+}
+
 export async function deleteUserAvatar (username:string) {
 
   const { data:folderFiles, error:fetchingError } = await supabase
