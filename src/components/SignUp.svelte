@@ -75,15 +75,21 @@
 		</svelte:fragment>Username already exits, please try again with a unique username</Toast
 	>
 	<h1 class="text-5xl text-center my-10">Create an account</h1>
-	<form on:submit|preventDefault={handleSubmit} class="flex flex-col max-w-md mx-auto gap-2 ">
-		<div class="grid gap-6 mb-6 md:grid-cols-2">
+	<form on:submit|preventDefault={handleSubmit} class="flex flex-col max-w-md mx-auto gap-2">
+		<div class="grid gap-6 mb-6 md:grid-cols-1 w-80">
 			<div>
 				<Label for="first_name" class="mb-2">Username</Label>
-				<Input type="text" placeholder="username" bind:value={newUser.username} required />
+				<Input
+					type="text"
+					placeholder="username"
+					bind:value={newUser.username}
+					class="w-full"
+					required
+				/>
 			</div>
 			<div>
 				<Label for="first_name" class="mb-2">Name</Label>
-				<Input type="text" placeholder="Full Name" bind:value={newUser.name} />
+				<Input type="text" placeholder="Full Name" bind:value={newUser.name}  />
 			</div>
 			<div>
 				<Label for="first_name" class="mb-2">E-mail</Label>
@@ -91,11 +97,17 @@
 			</div>
 			<div>
 				<Label for="first_name" class="mb-2">Password</Label>
-				<Input type="password" placeholder="password" bind:value={newUser.password} required />
+				<Input
+					type="password"
+					placeholder="password"
+					bind:value={newUser.password}
+					class="w-full"
+					required
+				/>
 			</div>
 			<Button
 				type="submit"
-				class="text-white bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 my-5"
+				class="text-white bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-2 py-1.5 text-center mr-2 mb-2 my-1"
 			>
 				Submit</Button
 			>

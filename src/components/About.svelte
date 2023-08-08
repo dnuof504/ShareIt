@@ -24,7 +24,7 @@
 
 
 <ul class="flex flex-col items-center justify-center gap-4">
-<div class="grid grid-cols-2 gap-4 place-content-center h-100 ...">
+<div class="grid md:grid-cols-2 sm:grid-cols-1 gap-4 place-content-center h-100 ...">
 
 
 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">

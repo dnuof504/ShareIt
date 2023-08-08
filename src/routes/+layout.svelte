@@ -3,10 +3,9 @@
 	import '../main.css';
 </script>
 
-<main >
+<main>
 	<NavBar />
 	<div class="container mx-auto p-4">
 		<slot />
 	</div>
-
 </main>
