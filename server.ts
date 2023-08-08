@@ -4,6 +4,13 @@ import axios from 'axios';
 import { sentiment } from './src/store';
 import {v4 as uuidv4} from 'uuid';
 
+class CustomError extends Error {
+  constructor(message: string, name: string) {
+    super(message);
+    this.name = name;
+  }
+}
+
 export async function fetchAllComments () {
 
     const { data, error } = await supabase
@@ -69,11 +76,21 @@ export async function getStoriesByCategory(slug: string) {
   .eq('category_name', slug)
     return data}
 export async function fetchSingleStory (id: number) {
-  const { data, error } = await supabase
+  if (isNaN(id)) {
+    throw new CustomError('Bad request.', '400')
+  } else {
+    const { data, error } = await supabase
     .from('stories')
     .select()
     .eq('story_id', id)
-  return data
+    if (error) {
+      throw error
+    } else if (!data?.length) {
+      throw new CustomError('Not found.', '404')
+    } else {
+      return data
+    }
+  }
 }
 
 export async function fetchStoryComments(id: number) {
