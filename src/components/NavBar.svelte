@@ -19,8 +19,8 @@
 
 	const handleLogout = () => {
 		loggedAs.set('Anonymous');
-		rights.set("USER");
-		goto("/")
+		rights.set('USER');
+		goto('/');
 	};
 </script>
 
@@ -66,11 +66,9 @@
 				><Chevron aligned>Logged as {$loggedAs}</Chevron></NavLi
 			>
 			<Dropdown triggeredBy="#nav-menu2" class="w-44 z-20">
-				<DropdownItem href="/account"
-				>Account</DropdownItem >
+				<DropdownItem href="/account">Account</DropdownItem>
 				<DropdownItem on:click={handleLogout}>Log Out</DropdownItem>
-
-				</Dropdown>
+			</Dropdown>
 		{/if}
 	</NavUl>
 </Navbar>

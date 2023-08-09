@@ -1,11 +1,8 @@
 <script lang="ts">
 	import { getStoriesByCategory } from '../../server';
-	import { getContext } from 'svelte';
 	import { category_slug } from '../store';
-	import { Card } from 'flowbite-svelte';
 	import StoryCard from './StoryCard.svelte';
 
-	let categoryName: string = getContext('category_name');
 	let stories: any = [];
 
 	category_slug.subscribe((newCategory) => {

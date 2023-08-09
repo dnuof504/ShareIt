@@ -137,10 +137,9 @@
 					bind:value={userInfoCopy.password}
 				/>
 			</div>
-            <div class="mb-6 flex justify-center">
-                <GradientButton  class="w-full" type="submit" color="purple">Submit!</GradientButton>
-
-            </div>
+			<div class="mb-6 flex justify-center">
+				<GradientButton class="w-full" type="submit" color="purple">Submit!</GradientButton>
+			</div>
 		</form>
 	{/if}
 
