@@ -54,10 +54,10 @@
 			<DropdownItem href="/categories/workplace" on:click={() => handleCategoryChange('workplace')}
 				>Work Place</DropdownItem
 			>
+			<DropdownDivider />
 			<DropdownItem href="/categories/general" on:click={() => handleCategoryChange('general')}
 				>General</DropdownItem
 			>
-			<DropdownDivider />
 		</Dropdown>
 		{#if $loggedAs === 'Anonymous'}
 			<NavLi href="/login">Login</NavLi>
