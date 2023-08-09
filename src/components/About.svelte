@@ -45,7 +45,7 @@
 		<div
 			class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
 		>
-			<img class="rounded-t-lg" src="https://i.imgur.com/FvVc1mL.png" alt="" />
+			<img class="rounded-t-lg h-96 w-full" src="https://i.imgur.com/FvVc1mL.png" alt="" />
 
 			<div class="p-5">
 				<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -64,7 +64,7 @@
 			class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
 		>
 			<img
-				class="rounded-t-lg"
+				class="rounded-t-lg h-96 w-full"
 				src="https://cdn.discordapp.com/attachments/1132982112526536816/1138117456687288380/image-of-me.jpg"
 				alt=""
 			/>
@@ -86,7 +86,7 @@
 			class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
 		>
 			<img
-				class="rounded-t-lg"
+				class="rounded-t-lg h-96 w-full"
 				src="https://cdn2.dumpoir.com/v1/13b31ce342edd1ecbfff2c24d352800d.jpg"
 				alt=""
 			/>
@@ -108,7 +108,7 @@
 			class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
 		>
 			<img
-				class="rounded-t-lg"
+				class="rounded-t-lg h-96 w-full"
 				src="https://cdn.discordapp.com/attachments/1132982112526536816/1138124194421415956/image.jpeg"
 				alt=""
 			/>

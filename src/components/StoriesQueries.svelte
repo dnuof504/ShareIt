@@ -15,10 +15,9 @@
 		filteredStories = await filterStories(filterBy, orderCriteria, sortBy);
 	}
 
-	onMount(updateFilteredStories);
-
 	const unsubscribe = stories.subscribe(() => {
-		filterStories(filterBy, orderCriteria, sortBy).then((data) => {
+		filterStories(filterBy, orderCriteria, sortBy)
+		.then((data) => {
 			filteredStories = data!;
 		});
 	});
