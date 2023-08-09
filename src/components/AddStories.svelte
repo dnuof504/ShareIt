@@ -79,7 +79,7 @@
 	<Textarea id="story" class="w-full" bind:value={newStory.body} required />
 
 	<Label class="pb-2">Upload file</Label>
-	<Fileupload {...fileuploadprops} on:change={handleFileSelection} />
+	<Fileupload {...fileuploadprops} on:change={handleFileSelection} required/>
 	<Label class="pb-2 my-2"
 		>Select a Category
 		<Select class="form-select mt-2" items={dropDownCategories} bind:value={selected} required />
