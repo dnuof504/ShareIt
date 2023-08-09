@@ -8,9 +8,11 @@
 	let newVotes: number;
 	let sentimentMessage:any = null
 	let sentimentRating:any = null
-	let isError: {} | null  = null;
+	let isError: {msg: string, status:number} | null = null;
 	import { fetchSingleStory, sentimentAnalysis, updateVotes } from '../../server';
 	import { formatDate } from '../utils/utils';
+	import Error from './Error.svelte';
+	import SingleStoryComments from './SingleStoryComments.svelte';
 
 	onMount(()=>{
 		fetchSingleStory(slug)
@@ -19,7 +21,21 @@
 		newVotes = Number(story[0].votes)
 		})
 		.catch((err)=>{
-			console.log(err)
+			if (err.name === '404') {
+				isError= {
+					msg: err.message, 
+					status: 404}
+			} else if (err.code) {
+				isError = {
+					msg: 'Bad request', 
+					status: 400
+				}
+			} else {
+				isError= {
+					msg: err.message, 
+					status: Number(err.name)
+				}
+			}
 		})
 	});
 
@@ -41,6 +57,9 @@
 
 
 <ul class='flex flex-col flex-wrap justify-center items-center'>
+	{#if isError}
+	<Error status={isError.status} msg={isError.msg}/>
+	{:else}
 		{#if story.length}
 			{#each story as story}
 
@@ -74,31 +93,14 @@
 	{/if}
     </div >
 </section>
-
-
-
-<!-- <li >
-					<Heading tag="h1" class="mb-4" customSize="text-4xl font-extrabold  md:text-5xl lg:text-6xl">{story.title}</Heading>
-				</li>
-				<li>
-					<img src={story.img_url} class="img" alt="this is something that we can see" />
-				</li>
-
-				<button on:click={()=>{
-					handleAnalysis(story)
-					}}
-		class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-		>Use the Power of AI</button>
-		{#if sentimentMessage !== null}
-  		<p>{sentimentMessage}</p>
-			{/if}
-				<li>
-					<P class="mb-3" weight="light" color="text-black-500 dark:text-gray-400">{story.body}</P>
-					<P class="mb-3" weight="light" color="text-black-500 dark:text-gray-400">Posted at: {story.created_at}</P>
-					<P class="mb-3" weight="light" color="text-black-500 dark:text-gray-400">likes: {newVotes}</P>
-					<P class="mb-3" weight="light" color="text-black-500 dark:text-gray-400">Author: {story.username}</P>
-					<P class="mb-3" weight="light" color="text-black-500 dark:text-gray-400">Category: {story.category_name}</P>
-				</li> -->
+				<br />
+				<br />
 			{/each}
+			<br />
+			<br />
+			{/if}
+			{/if}
+		</ul>
+		{#if story.length}
+		<SingleStoryComments/>
 		{/if}
-</ul>
