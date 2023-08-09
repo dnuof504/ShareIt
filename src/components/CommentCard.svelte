@@ -3,7 +3,7 @@
 	import { twMerge } from 'tailwind-merge';
 	import { loggedAs, rights } from '../store';
 	import { formatDate } from '../utils/utils';
-	export let renderComments: Comment[];
+
 	export let liClass = 'mb-10 ml-6';
 	export let spanClass =
 		'flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900';
@@ -16,7 +16,8 @@
 	export let textClass =
 		'p-3 text-md italic font-normal text-black-500 bg-gray-50 rounded-lg border border-gray-200 dark:bg-black-600 dark:border-gray-500 dark:text-black-300';
 	export let handleDelete: Function;
-	let liCls = twMerge(liClass, $$props.classLi);
+	export let renderComments: Comment[];
+
 	let spanCls = twMerge(spanClass, $$props.classSpan);
 	let imgCls = twMerge(imgClass, $$props.classImg);
 	let outerDivCls = twMerge(outerDivClass, $$props.classOuterDiv);
@@ -24,21 +25,17 @@
 	let timeCls = twMerge(timeClass, $$props.classTime);
 	let titleCls = twMerge(titleClass, $$props.classTitle);
 	let textCls = twMerge(textClass, $$props.classText);
-	let src = 'dsfdsfdsfds';
-	let alt = '';
-
 </script>
 
 {#each renderComments as { username, created_at, body, comment_id }}
-	<!-- <li class={liCls}> -->
-	<!-- <span class={spanCls}>
-          <img class={imgCls} {src} {alt} />
-        </span> -->
+	<span class={spanCls}>
+		<img class={imgCls} src={username.avatar_url} alt={username.username} />
+	</span>
 	<div class={outerDivCls}>
 		<div class={innerDivCls}>
 			<time class={timeCls}>{formatDate(created_at)}</time>
 			<div class={titleCls}>
-				{@html username}
+				{@html username.username}
 			</div>
 		</div>
 		{#if body}
@@ -66,5 +63,4 @@
 			</div>
 		{/if}
 	</div>
-	<!-- </li> -->
 {/each}

@@ -285,7 +285,7 @@ export async function replaceUserAvatar (username:string, file: File) {
   return uploading;
 }
 
-export async function filterStories( filterBy: string, orderCriteria: string, orderBy: 'ASC' | 'DESC') {
+export async function filterStories( filterBy: string, orderCriteria: string, orderBy: 'ASC' | 'DESC' | '') {
   let query = supabase
     .from('stories')
     .select()
@@ -395,5 +395,5 @@ export async function fetchStoryCommentsWithPicture(id:any) {
     return error
   }
 
-  return data
+  return data;
 }

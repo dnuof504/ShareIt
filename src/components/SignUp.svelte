@@ -89,7 +89,7 @@
 			</div>
 			<div>
 				<Label for="first_name" class="mb-2">Name</Label>
-				<Input type="text" placeholder="Full Name" bind:value={newUser.name}  />
+				<Input type="text" placeholder="Full Name" bind:value={newUser.name} />
 			</div>
 			<div>
 				<Label for="first_name" class="mb-2">E-mail</Label>
