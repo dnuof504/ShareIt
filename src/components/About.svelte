@@ -4,7 +4,7 @@
 <div class=" aboutUs flex flex-col items-center rounded-lg md:flex-row md:max-w-500">
 	<img
 		class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-80 md:rounded-none md:rounded-l-lg"
-		src="/static/AppLogo.png"
+		src="https://jxdsmvzqgqofgdetgfha.supabase.co/storage/v1/object/public/default/static/AppLogo.png?t=2023-08-09T13%3A02%3A44.240Z"
 		alt=""
 	/>
 	<div class="flex flex-col justify-between p-4 leading-normal">
