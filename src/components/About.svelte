@@ -45,7 +45,7 @@
 		<div
 			class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
 		>
-			<img class="rounded-t-lg h-96 w-full" src="https://i.imgur.com/FvVc1mL.png" alt="" />
+			<img class="rounded-t-lg h-96 w-full" src="https://jxdsmvzqgqofgdetgfha.supabase.co/storage/v1/object/public/users/some%20avatar%20pictures/GaryLions.png" alt="" />
 
 			<div class="p-5">
 				<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -109,7 +109,7 @@
 		>
 			<img
 				class="rounded-t-lg h-96 w-full"
-				src="https://cdn.discordapp.com/attachments/1132982112526536816/1138124194421415956/image.jpeg"
+				src="https://jxdsmvzqgqofgdetgfha.supabase.co/storage/v1/object/public/users/some%20avatar%20pictures/amruthaedit.jpg"
 				alt=""
 			/>
 
