@@ -107,7 +107,7 @@
 						bind:value={filterBy}
 						on:change={handleFilterChange}
 						class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-					>
+					>	<option value="">all</option>
 						<option value="workplace" class="text-lg">Workplace</option>
 						<option value="romance">Romance</option>
 						<option value="family">Family</option>
@@ -128,8 +128,9 @@
 						on:change={handleFilterChange}
 						class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 					>
-						<option value="ASC">Ascending</option>
+						
 						<option value="DESC">Descending</option>
+						<option value="ASC">Ascending</option>
 					</select>
 				</div>
 			</div>

@@ -43,6 +43,14 @@ const unsubscribe = loggedAs.subscribe((newUser) => {
 	onDestroy(unsubscribe);
 
 
+
+
+
+
+
+
+
+
 async function handleSubmit() {
   let coverUrl= `https://jxdsmvzqgqofgdetgfha.supabase.co/storage/v1/object/public/stories/`
   newStory.category_name = selected
@@ -61,6 +69,26 @@ async function handleSubmit() {
   function handleFileSelection (e: any) {
   cover = e.target.files[0]
 }
+
+let renderStories: any = [];
+
+const unsubscribe2 = stories.subscribe(() => {
+    fetchAllStories()
+    .then((data)=>{
+        renderStories = data!
+    })
+}) 
+
+onDestroy(unsubscribe2);
+
+
+
+
+
+
+
+
+
 </script>
 
 <form action="" on:submit|preventDefault={handleSubmit} class="w-96">

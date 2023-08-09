@@ -1,5 +1,7 @@
 <script>
     import { Heading, P } from 'flowbite-svelte'
+	// import { fetchStoryCommentsWithPicture } from '../../server';
+  //   fetchStoryCommentsWithPicture(3)
 </script>
 
 

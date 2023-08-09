@@ -382,3 +382,18 @@ export async function deleteStoryImage (img_url:string) {
       return removingError
     }
 }
+
+
+
+export async function fetchStoryCommentsWithPicture(id:any) {
+  const { data, error } = await supabase
+    .from('comments')
+    .select('comment_id,story_id,body,created_at,username(username,avatar_url)')
+    .eq('story_id', id)
+    .order('created_at', { ascending: false })
+  if (error) {
+    return error
+  }
+
+  return data
+}

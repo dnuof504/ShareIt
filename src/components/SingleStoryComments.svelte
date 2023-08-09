@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { fetchStoryComments, deleteSingleComment } from '../../server';
+	import { fetchStoryComments, deleteSingleComment,} from '../../server';
 	import { getContext, onDestroy, onMount } from 'svelte';
 	import { loggedAs } from '../store';
 	import AddComments from './AddComments.svelte';

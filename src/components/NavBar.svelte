@@ -26,7 +26,7 @@
 
 <Navbar let:hidden let:toggle color="blue">
 	<NavBrand href="/">
-		<img src="/static/AppLogo.png" class="mr-3 h-6 sm:h-9" alt="ShareIt logo" />
+		<img src="/AppLogo.png" class="mr-3 h-6 sm:h-9" alt="ShareIt logo" />
 		<span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
 			ShareIt
 		</span>
