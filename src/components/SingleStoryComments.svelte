@@ -59,7 +59,7 @@
 </script>
 
 <AddComments />
-<ul class="border">
+<ul>
 	{#if renderComments.length}
 
 	  <Activity>
