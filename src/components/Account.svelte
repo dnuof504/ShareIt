@@ -18,6 +18,7 @@
 	import { checkUpdatedUser } from '../utils/utils';
 	import DeleteUser from './DeleteUser.svelte';
 	import { goto } from '$app/navigation';
+	
 	let userInfo: Users;
 	let userInfoCopy: Users = {
 		username: '',
@@ -28,14 +29,18 @@
 		password: '',
 		permissions: Permissions.USER
 	};
-
+	
 	onMount(() => {
-		fetchUser($loggedAs).then((data) => {
-			userInfo = data![0];
-			userInfoCopy.username = userInfo.username;
-			userInfoCopy.permissions = userInfo.permissions;
-			userInfoCopy.avatar_url = userInfo.avatar_url;
-		});
+		if ($loggedAs === 'Anonymous') {
+			goto('/')
+		} else {
+			fetchUser($loggedAs).then((data) => {
+				userInfo = data![0];
+				userInfoCopy.username = userInfo.username;
+				userInfoCopy.permissions = userInfo.permissions;
+				userInfoCopy.avatar_url = userInfo.avatar_url;
+			});
+		}
 	});
 
 	const handleSubmit = () => {
@@ -54,7 +59,7 @@
 		});
 	};
 </script>
-
+{#if $loggedAs !== 'Anonymous'}
 <div class="flex justify-center flex-col max-w-lg">
 	{#if userInfo}
 		<Card padding="sm">
@@ -145,3 +150,4 @@
 
 	<DeleteUser />
 </div>
+{/if}
