@@ -65,7 +65,7 @@
 		>
 			<img
 				class="rounded-t-lg h-96 w-full"
-				src="https://cdn.discordapp.com/attachments/1132982112526536816/1138117456687288380/image-of-me.jpg"
+				src="https://jxdsmvzqgqofgdetgfha.supabase.co/storage/v1/object/public/users/some%20avatar%20pictures/christina.jpg"
 				alt=""
 			/>
 
@@ -87,7 +87,7 @@
 		>
 			<img
 				class="rounded-t-lg h-96 w-full"
-				src="https://cdn2.dumpoir.com/v1/13b31ce342edd1ecbfff2c24d352800d.jpg"
+				src="https://jxdsmvzqgqofgdetgfha.supabase.co/storage/v1/object/public/users/some%20avatar%20pictures/slava.jpg"
 				alt=""
 			/>
 
