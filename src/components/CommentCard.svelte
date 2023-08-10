@@ -43,7 +43,7 @@
 				{@html body}
 			</div>
 		{/if}
-		{#if username === $loggedAs && username !== 'Anonymous'}
+		{#if username.username === $loggedAs && username.username !== 'Anonymous'}
 			<div class="self-right my-3">
 				<button
 					class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-2.5 py-1.5 text-center mr-2 mb-2"
